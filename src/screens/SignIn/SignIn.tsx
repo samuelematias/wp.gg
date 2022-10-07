@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { ImageProps } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 import { ButtonIcon } from '../../components';
@@ -10,15 +9,9 @@ import IllustrationImg from '../../assets/illustration.png';
 
 import { theme } from '../../global/styles';
 
-/* const StatusBar = styled.StatusBar`
-*   bar-style: light-content;
-*   background-color: transparent;
-*   translucent: true;
-* `; */
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${theme.colors.secondary100};
   align-items: center;
   justify-content: center;
 `;
@@ -53,6 +46,13 @@ const ContentSubTitle = styled.Text`
 `;
 
 export function SignIn() {
+    const navigation = useNavigation();
+
+
+    function handleSignIn() {
+        navigation.navigate('home');
+    }
+
     return (
         <Container>
             <Illustration source={IllustrationImg} />
@@ -69,6 +69,7 @@ export function SignIn() {
                 <ButtonIcon
                     label="Entrar com Discord"
                     activeOpacity={0.7}
+                    onPress={handleSignIn}
                 />
             </Content>
         </Container>
