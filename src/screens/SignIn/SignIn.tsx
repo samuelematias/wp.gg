@@ -18,7 +18,7 @@ import { theme } from '../../global/styles';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${theme.colors.background};
+  background-color: ${theme.colors.secondary100};
   align-items: center;
   justify-content: center;
 `;
@@ -38,6 +38,8 @@ const ContentTitle = styled.Text`
   text-align: center;
   font-size: 40px;
   margin-bottom: 16px;
+  font-family: ${theme.fonts.title700};
+  line-height: 40px;
 `;
 
 
@@ -46,6 +48,8 @@ const ContentSubTitle = styled.Text`
   text-align: center;
   font-size: 15px;
   margin-bottom: 64px;
+  font-family: ${theme.fonts.title500};
+  line-height: 25px;
 `;
 
 export function SignIn() {
