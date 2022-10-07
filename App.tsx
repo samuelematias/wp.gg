@@ -17,10 +17,19 @@ import {
 import * as SplashScreen from 'expo-splash-screen';
 import styled from 'styled-components/native';
 
-import { SignIn } from './src/screens';
+import { Routes } from './src/routes';
 
-const Container = styled.View<ViewProps>`
+import { theme } from './src/global/styles';
+
+/* const StatusBar = styled.StatusBar`
+*   bar-style: light-content;
+*   background-color: transparent;
+*   translucent: true;
+* `; */
+
+const Container = styled.SafeAreaView<ViewProps>`
   flex: 1;
+  background-color: ${theme.colors.secondary100};
 `;
 
 export default function App() {
@@ -67,7 +76,7 @@ export default function App() {
     }
     return (
         <Container onLayout={onLayoutRootView}>
-            <SignIn />
+            <Routes />
         </Container>
     );
 }
