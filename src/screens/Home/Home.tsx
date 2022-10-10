@@ -13,30 +13,7 @@ import {
     ListHeader,
 } from '../../components';
 
-/* type Props = FlatListProps<AppointmentProps> & {
-*     categorySelected: string;
-*     setCategory: (categoryId: string) => void;
-*     handleAppointmentDetails: (guildSelected: GuildProps) => void;
-*     handleAppointmentCreate: () => void;
-* }; */
-
-/* type AppointmentProps = {
-*     id: string;
-*     guild: {
-*         id: string;
-*         name: string;
-*         icon: string | null;
-*         owner: boolean;
-*     };
-*     category: string;
-*     date: string;
-*     description: string;
-* }; */
-
 const Container = styled.View`
-`;
-
-const Content = styled.View`
 `;
 
 const Header = styled.View`
@@ -48,14 +25,10 @@ const Header = styled.View`
     margin-bottom: 42px;
 `;
 
-/* const List = styled.FlatList.attrs({
-*     contentContainerStyle: { paddingBottom: 69 },
-*     showsVerticalScrollIndicator: false,
-* })`
-*     padding: 0 24px;
-* `; */
+const ListWrapper = styled.View`
+`;
 
-const List = styled(FlatList as new () => FlatList<AppointementProps>)`
+const StyledFlatList = styled(FlatList as new () => FlatList<AppointementProps>)`
     margin-top: 24px;
     margin-left: 24px;
 `
@@ -106,12 +79,12 @@ export function Home() {
                 categorySelected={category}
                 setCategory={handleCategorySelect}
             />
-            <Content>
+            <ListWrapper>
                 <ListHeader
                     title="Partidas agendadas"
                     subTitle="Total 6"
                 />
-                <List<React.ElementType>
+                <StyledFlatList<React.ElementType>
                     data={appointments}
                     keyExtractor={(item: AppointementProps) => item.id}
                     renderItem={({ item }: { item: AppointementProps }) => (
@@ -120,7 +93,7 @@ export function Home() {
                     ItemSeparatorComponent={() => <ListDivider />}
                     showsVerticalScrollIndicator={false}
                 />
-            </Content>
+            </ListWrapper>
         </Container>
     );
 }

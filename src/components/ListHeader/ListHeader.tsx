@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { theme } from '../../global/styles';
 
-type ListHeaderProps = {
+type Props = {
     title: string;
     subTitle: string;
 };
@@ -26,15 +26,13 @@ const SubTitle = styled.Text`
     font-size: 13px;
 `;
 
-export function ListHeader({ title, subTitle }: ListHeaderProps) {
+export function ListHeader({ title, subTitle }: Props) {
     return (
         <Container>
             <Title>
                 {title}
             </Title>
-
             <SubTitle>
-
                 {subTitle}
             </SubTitle>
         </Container>

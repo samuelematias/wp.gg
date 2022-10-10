@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-    TouchableOpacityProps,
-    TextProps,
-    ImageProps,
-} from 'react-native';
+import { TouchableOpacityProps } from 'react-native';
 
 import styled from 'styled-components/native';
 
@@ -11,11 +7,11 @@ import DiscordIcon from '../../assets/discord.png';
 
 import { theme } from '../../global/styles';
 
-type ButtonIconProps = TouchableOpacityProps & {
+type Props = TouchableOpacityProps & {
     label: string;
 }
 
-export const Touchable = styled.TouchableOpacity<TouchableOpacityProps>`
+const Touchable = styled.TouchableOpacity`
     width: 100%;
     height: 56px;
     background-color: ${theme.colors.primary};
@@ -25,14 +21,14 @@ export const Touchable = styled.TouchableOpacity<TouchableOpacityProps>`
     justify-content: center;
 `;
 
-export const Text = styled.Text<TextProps>`
+const Text = styled.Text`
     flex: 1;
     color: ${theme.colors.heading};
     font-size: 15px;
     text-align: center;
 `;
 
-export const IconWrapper = styled.View`
+const IconWrapper = styled.View`
     width: 56px;
     height: 56px;
     justify-content: center;
@@ -41,12 +37,12 @@ export const IconWrapper = styled.View`
     border-color: ${theme.colors.line};
 `;
 
-const Icon = styled.Image<ImageProps>`
+const Icon = styled.Image`
     width: 24px;
     height: 18px;
 `;
 
-export function ButtonIcon({ label, ...rest }: ButtonIconProps) {
+export function ButtonIcon({ label, ...rest }: Props) {
     return (
         <Touchable {...rest}>
             <IconWrapper>

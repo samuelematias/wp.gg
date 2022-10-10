@@ -3,7 +3,6 @@ import {
     useEffect,
     useCallback,
 } from 'react';
-import { ViewProps } from 'react-native';
 
 import * as Font from 'expo-font';
 import {
@@ -21,13 +20,14 @@ import { Routes } from './src/routes';
 
 import { theme } from './src/global/styles';
 
+/// For Android, this will be necessary!
 /* const StatusBar = styled.StatusBar`
 *   bar-style: light-content;
 *   background-color: transparent;
 *   translucent: true;
 * `; */
 
-const Container = styled.SafeAreaView<ViewProps>`
+const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${theme.colors.secondary100};
 `;

@@ -12,7 +12,7 @@ const Container = styled.View`
 const Content = styled.View`
 `;
 
-const UserContent = styled.View`
+const UserWrapper = styled.View`
     flex-direction: row;
 `;
 
@@ -23,7 +23,7 @@ const UserGreeting = styled.Text`
     margin-right: 6px;
 `;
 
-const UseName = styled.Text`
+const UserName = styled.Text`
     font-family: ${theme.fonts.title700};
     font-size: 24px;
     color: ${theme.colors.heading};
@@ -41,16 +41,16 @@ export function Profile() {
                 urlImage="https://github.com/samuelematias.png"
             />
             <Content>
-                <UserContent>
+                <UserWrapper>
                     <UserGreeting>
                         Olá,
                     </UserGreeting>
-                    <UseName>
+                    <UserName>
                         Samuel
-                    </UseName>
-                </UserContent>
+                    </UserName>
+                </UserWrapper>
                 <Message>
-                    Hoje é dia de vitória
+                    Hoje é dia de vitória!!!
                 </Message>
             </Content>
         </Container>

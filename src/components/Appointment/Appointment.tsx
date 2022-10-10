@@ -5,11 +5,18 @@ import {
 
 import styled from 'styled-components/native';
 
-import { categories } from '../../utils';
+import { GuildIcon } from '../GuildIcon';
+
 import PlayerSvg from '../../assets/player.svg';
 import CalendarSvg from '../../assets/calendar.svg';
-import { GuildIcon } from '../GuildIcon';
+
+import { categories } from '../../utils';
+
 import { theme } from '../../global/styles';
+
+type Props = TouchableOpacityProps & {
+    data: AppointementProps;
+}
 
 export type GuildProps = {
     id: string;
@@ -26,18 +33,11 @@ export type AppointementProps = {
     description: string;
 };
 
-type Props = TouchableOpacityProps & {
-    data: AppointementProps;
-}
-
-interface PlayerTitleType extends TextProps {
+interface ITextProps extends TextProps {
     owner: boolean;
 }
 
-export const Touchable = styled.TouchableOpacity<TouchableOpacityProps>`
-`;
-
-const Container = styled.View`
+export const Touchable = styled.TouchableOpacity`
     width: 100%;
     flex-direction: row;
     align-self: center;
@@ -54,7 +54,7 @@ const Header = styled.View`
     margin-bottom: 12px;
 `;
 
-const Title = styled.Text`
+const HeaderTitle = styled.Text`
     font-family: ${theme.fonts.title700};
     color: ${theme.colors.heading};
     font-size: 18px;
@@ -73,24 +73,24 @@ const Footer = styled.View`
     justify-content: space-between;
 `;
 
-const ContentDateInfo = styled.View`
+const DateWrapper = styled.View`
     flex-direction: row;
     align-items: center;
 `;
 
-const Date = styled.Text`
+const DateLabel = styled.Text`
     font-family: ${theme.fonts.text400};
     color: ${theme.colors.highlight};
     font-size: 13px;
     margin-left: 7px;
 `;
 
-const ContentPlayerInfo = styled.View`
+const PlayerWrapper = styled.View`
     flex-direction: row;
     align-items: center;
 `;
 
-const PlayerTitle = styled.Text<PlayerTitleType>`
+const PlayerTitle = styled.Text<ITextProps>`
     font-family: ${theme.fonts.text500};
     color: ${(props) => (props.owner ? theme.colors.primary : theme.colors.on)};
     font-size: 13px;
@@ -107,29 +107,27 @@ export function Appointment({ data, ...rest }: Props) {
 
     return (
         <Touchable {...rest}>
-            <Container>
-                <GuildIcon urlImage={icon} />
-                <Content>
-                    <Header>
-                        <Title>{name}</Title>
-                        <CategoryTitle>{category.title}</CategoryTitle>
-                    </Header>
-                    <Footer>
-                        <ContentDateInfo>
-                            <CalendarSvg
-                                fill={primary}
-                            />
-                            <Date>{data.date}</Date>
-                        </ContentDateInfo>
-                        <ContentPlayerInfo>
-                            <PlayerSvg fill={owner ? primary : on} />
-                            <PlayerTitle owner={owner}>
-                                {owner ? 'Anfitrião' : 'Visitante'}
-                            </PlayerTitle>
-                        </ContentPlayerInfo>
-                    </Footer>
-                </Content>
-            </Container>
+            <GuildIcon urlImage={icon} />
+            <Content>
+                <Header>
+                    <HeaderTitle>{name}</HeaderTitle>
+                    <CategoryTitle>{category.title}</CategoryTitle>
+                </Header>
+                <Footer>
+                    <DateWrapper>
+                        <CalendarSvg
+                            fill={primary}
+                        />
+                        <DateLabel>{data.date}</DateLabel>
+                    </DateWrapper>
+                    <PlayerWrapper>
+                        <PlayerSvg fill={owner ? primary : on} />
+                        <PlayerTitle owner={owner}>
+                            {owner ? 'Anfitrião' : 'Visitante'}
+                        </PlayerTitle>
+                    </PlayerWrapper>
+                </Footer>
+            </Content>
         </Touchable>
     );
 }
