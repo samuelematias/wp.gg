@@ -33,11 +33,11 @@ export type AppointementProps = {
     description: string;
 };
 
-interface PlayerTitleType extends TextProps {
+interface ITextProps extends TextProps {
     owner: boolean;
 }
 
-export const Touchable = styled.TouchableOpacity<TouchableOpacityProps>`
+export const Touchable = styled.TouchableOpacity`
     width: 100%;
     flex-direction: row;
     align-self: center;
@@ -73,7 +73,7 @@ const Footer = styled.View`
     justify-content: space-between;
 `;
 
-const DateInfo = styled.View`
+const DateWrapper = styled.View`
     flex-direction: row;
     align-items: center;
 `;
@@ -85,12 +85,12 @@ const DateLabel = styled.Text`
     margin-left: 7px;
 `;
 
-const PlayerInfo = styled.View`
+const PlayerWrapper = styled.View`
     flex-direction: row;
     align-items: center;
 `;
 
-const PlayerTitle = styled.Text<PlayerTitleType>`
+const PlayerTitle = styled.Text<ITextProps>`
     font-family: ${theme.fonts.text500};
     color: ${(props) => (props.owner ? theme.colors.primary : theme.colors.on)};
     font-size: 13px;
@@ -114,18 +114,18 @@ export function Appointment({ data, ...rest }: Props) {
                     <CategoryTitle>{category.title}</CategoryTitle>
                 </Header>
                 <Footer>
-                    <DateInfo>
+                    <DateWrapper>
                         <CalendarSvg
                             fill={primary}
                         />
                         <DateLabel>{data.date}</DateLabel>
-                    </DateInfo>
-                    <PlayerInfo>
+                    </DateWrapper>
+                    <PlayerWrapper>
                         <PlayerSvg fill={owner ? primary : on} />
                         <PlayerTitle owner={owner}>
                             {owner ? 'Anfitrião' : 'Visitante'}
                         </PlayerTitle>
-                    </PlayerInfo>
+                    </PlayerWrapper>
                 </Footer>
             </Content>
         </Touchable>
