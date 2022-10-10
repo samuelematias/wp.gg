@@ -46,9 +46,9 @@ const Icon = styled.Image<ImageProps>`
     height: 18px;
 `;
 
-export function ButtonIcon({ label, ...props }: ButtonIconProps) {
+export function ButtonIcon({ label, ...rest }: ButtonIconProps) {
     return (
-        <Touchable {...props}>
+        <Touchable {...rest}>
             <IconWrapper>
                 <Icon source={DiscordIcon} />
             </IconWrapper>
