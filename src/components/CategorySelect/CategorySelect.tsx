@@ -1,9 +1,10 @@
 import styled from 'styled-components/native';
 
 import { Category } from '../Category';
+
 import { categories } from '../../utils';
 
-type CategorySelectProps = {
+type Props = {
     categorySelected: string;
     setCategory: (categoryId: string) => void;
     hasCheckBox?: boolean;
@@ -18,7 +19,7 @@ const Scroll = styled.ScrollView`
 export function CategorySelect({
     categorySelected,
     setCategory,
-}: CategorySelectProps) {
+}: Props) {
 
     return (
         <Scroll
@@ -33,7 +34,8 @@ export function CategorySelect({
                     icon={category.icon}
                     checked={category.id === categorySelected}
                     activeOpacity={0.7}
-                    onPress={() => setCategory(category.id)} />
+                    onPress={() => setCategory(category.id)}
+                />
             ))}
         </Scroll>
     );
