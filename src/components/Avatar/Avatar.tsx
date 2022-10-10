@@ -3,7 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { theme } from '../../global/styles';
 
-type AvatarProps = {
+type Props = {
     urlImage: string;
 };
 
@@ -22,16 +22,23 @@ const Image = styled.Image`
     border-radius: 8px;
 `;
 
-export function Avatar({ urlImage }: AvatarProps) {
-    const { secondary80, secondary100 } = theme.colors;
+const StyledLinearGradient = styled(LinearGradient).attrs({
+    colors: [theme.colors.secondary80, theme.colors.secondary100],
+    start: { x: 0, y: 0.8 },
+    end: { x: 0.4, y: 0.8 },
+})`
+    border-radius: 8px;
+ `
+
+export function Avatar({ urlImage }: Props) {
 
     return (
         <Container>
-            <LinearGradient style={{ borderRadius: 8 }} colors={[secondary80, secondary100]}>
+            <StyledLinearGradient>
                 <Image
                     source={{ uri: urlImage }}
                 />
-            </LinearGradient>
+            </StyledLinearGradient>
         </Container>
     );
 }
