@@ -16,7 +16,7 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-const Illustration = styled.Image<ImageProps>`
+const Illustration = styled.Image`
   width: 100%;
   height: 360px;
   resize-mode: cover;
