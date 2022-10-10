@@ -7,7 +7,7 @@ import { ViewProps } from 'react-native';
 
 import * as Font from 'expo-font';
 import {
-    Inter_900Black,
+    Inter_400Regular,
     Inter_500Medium,
 } from '@expo-google-fonts/inter';
 import {
@@ -43,7 +43,7 @@ export default function App() {
 
                 // Pre-load fonts, make any API calls you need to do here
                 await Font.loadAsync({
-                    Inter_900Black,
+                    Inter_400Regular,
                     Inter_500Medium,
                     Rajdhani_500Medium,
                     Rajdhani_700Bold,
