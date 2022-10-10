@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { theme } from '../../global/styles';
 
-export const Touchable = styled.TouchableOpacity<TouchableOpacityProps>`
+const Touchable = styled.TouchableOpacity`
     width: 48px;
     height: 48px;
     background-color: ${theme.colors.primary};
