@@ -46,32 +46,32 @@ const ContentSubTitle = styled.Text`
 `;
 
 export function SignIn() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
 
-    function handleSignIn() {
-        navigation.navigate('home');
-    }
+  function handleSignIn() {
+    navigation.navigate('home');
+  }
 
-    return (
-        <Container>
-            <Illustration source={IllustrationImg} />
-            <Content>
-                <ContentTitle>
-                    Conecte-se {'\n'}
-                    e organize suas {'\n'}
-                    jogatinas
-                </ContentTitle>
-                <ContentSubTitle>
-                    Crie grupos para jogar seus games {'\n'}
-                    favoritos com seus amigos
-                </ContentSubTitle>
-                <ButtonIcon
-                    label="Entrar com Discord"
-                    activeOpacity={0.7}
-                    onPress={handleSignIn}
-                />
-            </Content>
-        </Container>
-    );
+  return (
+    <Container>
+      <Illustration source={IllustrationImg} />
+      <Content>
+        <ContentTitle>
+          Conecte-se {'\n'}
+          e organize suas {'\n'}
+          jogatinas
+        </ContentTitle>
+        <ContentSubTitle>
+          Crie grupos para jogar seus games {'\n'}
+          favoritos com seus amigos
+        </ContentSubTitle>
+        <ButtonIcon
+          label="Entrar com Discord"
+          activeOpacity={0.7}
+          onPress={() => handleSignIn()}
+        />
+      </Content>
+    </Container>
+  );
 }
