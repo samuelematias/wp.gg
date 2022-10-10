@@ -19,7 +19,7 @@ const Container = styled.View`
 const Illustration = styled.Image<ImageProps>`
   width: 100%;
   height: 360px;
-  resize-mode: stretch;
+  resize-mode: cover;
 `;
 
 const Content = styled.View`
