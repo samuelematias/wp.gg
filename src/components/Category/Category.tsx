@@ -1,26 +1,25 @@
 import {
     TouchableOpacityProps,
-    TextProps,
     ViewProps,
 } from 'react-native';
 
-import { SvgProps } from 'react-native-svg';
 import styled from 'styled-components/native';
+import { SvgProps } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { theme } from '../../global/styles';
 
-type CategoryProps = TouchableOpacityProps & {
+type Props = TouchableOpacityProps & {
     title: string;
     icon: React.FC<SvgProps>;
     checked?: boolean;
 };
 
-interface ContentType extends ViewProps {
+interface IViewProps extends ViewProps {
     checked: boolean;
 }
 
-export const Touchable = styled.TouchableOpacity<TouchableOpacityProps>`
+const Touchable = styled.TouchableOpacity`
     width: 104px;
     height: 120px;
     border-radius: 8px;
@@ -30,7 +29,7 @@ export const Touchable = styled.TouchableOpacity<TouchableOpacityProps>`
     margin-right: 8px;
 `;
 
-const Content = styled.View<ContentType>`
+const Content = styled.View<IViewProps>`
     width: 104px;
     height: 120px;
     background-color: theme.colors.secondary40;
@@ -42,7 +41,7 @@ const Content = styled.View<ContentType>`
     };
 `;
 
-const ContentChecked = styled.View<ContentType>`
+const Checkbox = styled.View<IViewProps>`
     width: 10px;
     height: 10px;
     background-color: ${(props) => (props.checked ? theme.colors.primary : theme.colors.secondary100)};
@@ -53,7 +52,7 @@ const ContentChecked = styled.View<ContentType>`
     border-color: ${(props) => (props.checked ? theme.colors.primary : 'transparent')};
 `;
 
-export const Title = styled.Text<TextProps>`
+const Label = styled.Text`
     color: ${theme.colors.heading};
     font-size: 15px;
     text-align: center;
@@ -61,54 +60,27 @@ export const Title = styled.Text<TextProps>`
 
 
 
-export const Gradient = styled(LinearGradient)`
-`
-
-// export const Gradient = styled(LinearGradient).attrs({
-//     colors: ['white', 'transparent'],
-//     start: { x: 0, y: 0.8 },
-//     end: { x: 0.4, y: 0.8 },
-// })`
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-// `
-
-// export const ButtonElement = styled(RectButton)`
-//   width: 100%;
-//   height: 100%;
-//   justify-content: center;
-//   align-items: center;
-// `;
-
-/* const ScrollViewCustom3 = styled(ScrollView).attrs((props) => ({
-*     contentContainerStyle: [
-*         [{ padding: 40 }, [[{ marginTop: 80 }]]],
-*         props.contentContainerStyle
-*     ],
-* }))`
-*     flex: 1;
-*   `; */
+const StyledLinearGradient = styled(LinearGradient).attrs({
+    colors: [theme.colors.secondary80, theme.colors.secondary100],
+})`
+ `
 
 export function Category({
     title,
     icon: Icon,
     checked = false,
     ...rest
-}: CategoryProps) {
-    const { secondary80, secondary100 } = theme.colors;
+}: Props) {
 
     return (
         <Touchable {...rest}>
-            <Gradient colors={[secondary80, secondary100]}>
+            <StyledLinearGradient>
                 <Content checked={checked}>
-                    <ContentChecked checked={checked} />
+                    <Checkbox checked={checked} />
                     <Icon width={48} height={48} />
-                    <Title>{title}</Title>
+                    <Label>{title}</Label>
                 </Content>
-            </Gradient>
+            </StyledLinearGradient>
         </Touchable>
     );
 };
