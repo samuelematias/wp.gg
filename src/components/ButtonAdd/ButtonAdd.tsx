@@ -14,9 +14,9 @@ export const Touchable = styled.TouchableOpacity<TouchableOpacityProps>`
     justify-content: center;
 `;
 
-export function ButtonAdd({ ...props }: TouchableOpacityProps) {
+export function ButtonAdd({ ...rest }: TouchableOpacityProps) {
     return (
-        <Touchable {...props}>
+        <Touchable {...rest}>
             <MaterialCommunityIcons
                 name="plus"
                 color={theme.colors.heading}
