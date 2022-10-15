@@ -58,6 +58,7 @@ const Label = styled.Text`
     font-family: ${theme.fonts.title700};
     font-size: 15px;
     text-align: center;
+    margin-top: 16px;
 `;
 
 
