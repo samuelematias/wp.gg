@@ -15,7 +15,10 @@ const Input = styled.TextInput`
     border-radius: 8px;
     font-size: 13px;
     margin-right: 4px;
-    text-align: center;
+    border-width: 1px;
+    border-color: ${theme.colors.secondary50};
+    padding: 16px;
+    text-align-vertical: top;
 `;
 
 export function TextArea({ ...rest }: TextInputProps) {
