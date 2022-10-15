@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
 
+
+import { useAuth } from '../../hooks';
 import { Avatar } from '../Avatar';
 
 import { theme } from '../../global/styles';
@@ -35,10 +37,12 @@ const Message = styled.Text`
 `;
 
 export function Profile() {
+    const { user } = useAuth();
+
     return (
         <Container>
             <Avatar
-                urlImage="https://github.com/samuelematias.png"
+                urlImage={user?.avatar}
             />
             <Content>
                 <UserWrapper>
@@ -46,7 +50,7 @@ export function Profile() {
                         Olá,
                     </UserGreeting>
                     <UserName>
-                        Samuel
+                        {user?.firstName}
                     </UserName>
                 </UserWrapper>
                 <Message>
