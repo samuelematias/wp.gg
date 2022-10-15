@@ -11,3 +11,4 @@ export * from './ListDivider';
 export * from './ListHeader';
 export * from './Member';
 export * from './Profile';
+export * from './SmallInput';
