@@ -15,4 +15,5 @@ export * from './Member';
 export * from './ModalView';
 export * from './Profile';
 export * from './SmallInput';
+export * from './StatusBarColor';
 export * from './TextArea';

@@ -59,7 +59,7 @@ const Subtitle = styled.Text`
     margin-top: 11px;
 `;
 
-const StyledFlatList = styled(FlatList as new () => FlatList<MemberProps>)`
+const MemberList = styled(FlatList as new () => FlatList<MemberProps>)`
     margin-top: 27px;
     margin-left: 24px;
 `
@@ -109,13 +109,14 @@ export function AppointmentDetails() {
                 title="Jogadores"
                 subTitle="Total 2"
             />
-            <StyledFlatList<ElementType>
+            <MemberList
                 data={members}
                 keyExtractor={(item: MemberProps) => item.id}
                 renderItem={({ item }: { item: MemberProps }) => (
                     <Member data={item} />
                 )}
                 ItemSeparatorComponent={() => <ListDivider />}
+                showsVerticalScrollIndicator={false}
             />
             <Footer>
                 <ButtonIcon

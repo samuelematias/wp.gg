@@ -18,7 +18,7 @@ const Container = styled.View`
     padding-top: 24px;
 `;
 
-const StyledFlatList = styled(FlatList as new () => FlatList<GuildProps>)`
+const GuildList = styled(FlatList as new () => FlatList<GuildProps>)`
     width: 100%;
 `
 
@@ -39,7 +39,7 @@ export function Guilds({ handleGuildSelect }: Props) {
     ];
     return (
         <Container>
-            <StyledFlatList
+            <GuildList
                 data={guilds}
                 keyExtractor={(item: GuildProps) => item.id}
                 renderItem={({ item }: { item: GuildProps }) => (

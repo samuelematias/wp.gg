@@ -1,7 +1,10 @@
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
 
-import { ButtonIcon } from '../../components';
+import {
+    ButtonIcon,
+    StatusBarColor,
+} from '../../components';
 
 import IllustrationImg from '../../assets/illustration.png';
 
@@ -43,7 +46,12 @@ const SubTitle = styled.Text`
   line-height: 25px;
 `;
 
+const ButtonWrapper = styled.View`
+  margin-bottom: 50px;
+`;
+
 export function SignIn() {
+    const { secondary100 } = theme.colors;
     const navigation = useNavigation();
 
 
@@ -53,6 +61,10 @@ export function SignIn() {
 
     return (
         <Container>
+            <StatusBarColor
+                barStyle="light-content"
+                backgroundColor={secondary100}
+            />
             <Illustration source={IllustrationImg} />
             <Content>
                 <Title>
@@ -64,10 +76,12 @@ export function SignIn() {
                     Crie grupos para jogar seus games {'\n'}
                     favoritos com seus amigos
                 </SubTitle>
-                <ButtonIcon
-                    label="Entrar com Discord"
-                    onPress={() => handleSignIn()}
-                />
+                <ButtonWrapper>
+                    <ButtonIcon
+                        label="Entrar com Discord"
+                        onPress={handleSignIn}
+                    />
+                </ButtonWrapper>
             </Content>
         </Container>
     );

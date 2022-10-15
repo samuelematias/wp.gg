@@ -15,6 +15,7 @@ import {
 } from '../../components';
 
 const Container = styled.View`
+    flex: 1;
 `;
 
 const Header = styled.View`
@@ -26,13 +27,19 @@ const Header = styled.View`
     margin-bottom: 42px;
 `;
 
-const ListWrapper = styled.View`
-`;
 
-const StyledFlatList = styled(FlatList as new () => FlatList<AppointementProps>)`
+const AppointmentList = styled(FlatList as new () => FlatList<AppointementProps>)`
     margin-top: 24px;
     margin-left: 24px;
 `
+
+const FloatingButtonWrapper = styled.View`
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    bottom: 30px;
+    right: 30px;
+`;
 
 export function Home() {
     const navigation = useNavigation();
@@ -81,32 +88,30 @@ export function Home() {
         <Container>
             <Header>
                 <Profile />
-                <ButtonAdd
-                    onPress={handleAppointmentCreate}
-                />
             </Header>
             <CategorySelect
                 categorySelected={category}
                 setCategory={handleCategorySelect}
             />
-            <ListWrapper>
-                <ListHeader
-                    title="Partidas agendadas"
-                    subTitle="Total 6"
-                />
-                <StyledFlatList<React.ElementType>
-                    data={appointments}
-                    keyExtractor={(item: AppointementProps) => item.id}
-                    renderItem={({ item }: { item: AppointementProps }) => (
-                        <Appointment
-                            data={item}
-                            onPress={handleAppointmentDetails}
-                        />
-                    )}
-                    ItemSeparatorComponent={() => <ListDivider />}
-                    showsVerticalScrollIndicator={false}
-                />
-            </ListWrapper>
+            <ListHeader
+                title="Partidas agendadas"
+                subTitle="Total 6"
+            />
+            <AppointmentList
+                data={appointments}
+                keyExtractor={(item: AppointementProps) => item.id}
+                renderItem={({ item }: { item: AppointementProps }) => (
+                    <Appointment
+                        data={item}
+                        onPress={handleAppointmentDetails}
+                    />
+                )}
+                ItemSeparatorComponent={() => <ListDivider />}
+                showsVerticalScrollIndicator={false}
+            />
+            <FloatingButtonWrapper>
+                <ButtonAdd onPress={handleAppointmentCreate} />
+            </FloatingButtonWrapper>
         </Container>
     );
 }

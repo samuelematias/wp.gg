@@ -6,7 +6,7 @@ import styled from 'styled-components/native';
 
 import { theme } from '../../global/styles';
 
-const InputNumeric = styled.TextInput`
+const Input = styled.TextInput`
     width: 100%;
     height: 95px;
     background-color: ${theme.colors.secondary40};
@@ -20,7 +20,7 @@ const InputNumeric = styled.TextInput`
 
 export function TextArea({ ...rest }: TextInputProps) {
     return (
-        <InputNumeric<ElementType>
+        <Input<ElementType>
             {...rest}
         />
     );
