@@ -40,7 +40,6 @@ const Banner = styled.ImageBackground.attrs({
 })`
     width: 100%;
     height: 234px;
-    margin-bottom: 30px;
 `;
 
 const Title = styled.Text`
