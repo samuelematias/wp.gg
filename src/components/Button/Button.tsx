@@ -2,8 +2,6 @@ import { TouchableOpacityProps } from 'react-native';
 
 import styled from 'styled-components/native';
 
-import DiscordIcon from '../../assets/discord.png';
-
 import { theme } from '../../global/styles';
 
 type Props = TouchableOpacityProps & {
@@ -28,29 +26,13 @@ const Text = styled.Text`
     font-family: ${theme.fonts.text500};
 `;
 
-const IconWrapper = styled.View`
-    width: 56px;
-    height: 56px;
-    justify-content: center;
-    align-items: center;
-    border-right-width: 1px;
-    border-color: ${theme.colors.line};
-`;
 
-const Icon = styled.Image`
-    width: 24px;
-    height: 18px;
-`;
-
-export function ButtonIcon({ label, ...rest }: Props) {
+export function Button({ label, ...rest }: Props) {
     return (
         <Touchable
             activeOpacity={0.7}
             {...rest}
         >
-            <IconWrapper>
-                <Icon source={DiscordIcon} />
-            </IconWrapper>
             <Text >
                 {label}
             </Text>

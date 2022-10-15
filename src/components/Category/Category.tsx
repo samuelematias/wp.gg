@@ -12,6 +12,7 @@ import { theme } from '../../global/styles';
 type Props = TouchableOpacityProps & {
     title: string;
     icon: React.FC<SvgProps>;
+    hasCheckBox?: boolean;
     checked?: boolean;
 };
 
@@ -22,7 +23,6 @@ interface IViewProps extends ViewProps {
 const Touchable = styled.TouchableOpacity`
     width: 104px;
     height: 120px;
-    border-radius: 8px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -36,17 +36,18 @@ const Content = styled.View<IViewProps>`
     border-radius: 8px;
     align-items: center;
     justify-content: space-between;
-    padding-vertical: 7px;
+    padding-vertical: 20px;
     opacity: ${(props) => (props.checked ? '1' : '0.4')};
     };
 `;
 
 const Checkbox = styled.View<IViewProps>`
+    position: absolute;
+    top: 7px;
+    right: 7px;
     width: 10px;
     height: 10px;
     background-color: ${(props) => (props.checked ? theme.colors.primary : theme.colors.secondary100)};
-    align-self: flex-end;
-    margin-right: 7px;
     border-radius: 3px;
     border-width: 2px;
     border-color: ${(props) => (props.checked ? theme.colors.primary : 'transparent')};
@@ -54,8 +55,10 @@ const Checkbox = styled.View<IViewProps>`
 
 const Label = styled.Text`
     color: ${theme.colors.heading};
+    font-family: ${theme.fonts.title700};
     font-size: 15px;
     text-align: center;
+    margin-top: 16px;
 `;
 
 
@@ -63,11 +66,13 @@ const Label = styled.Text`
 const StyledLinearGradient = styled(LinearGradient).attrs({
     colors: [theme.colors.secondary80, theme.colors.secondary100],
 })`
- `
+    border-radius: 8px;
+`
 
 export function Category({
     title,
     icon: Icon,
+    hasCheckBox = false,
     checked = false,
     ...rest
 }: Props) {
@@ -76,7 +81,7 @@ export function Category({
         <Touchable {...rest}>
             <StyledLinearGradient>
                 <Content checked={checked}>
-                    <Checkbox checked={checked} />
+                    {hasCheckBox && <Checkbox checked={checked} />}
                     <Icon width={48} height={48} />
                     <Label>{title}</Label>
                 </Content>

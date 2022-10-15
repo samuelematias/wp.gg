@@ -19,6 +19,7 @@ const Scroll = styled.ScrollView`
 export function CategorySelect({
     categorySelected,
     setCategory,
+    hasCheckBox = false,
 }: Props) {
 
     return (
@@ -35,6 +36,7 @@ export function CategorySelect({
                     checked={category.id === categorySelected}
                     activeOpacity={0.7}
                     onPress={() => setCategory(category.id)}
+                    hasCheckBox={hasCheckBox}
                 />
             ))}
         </Scroll>
