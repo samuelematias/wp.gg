@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import {
+    AppointmentCreate,
     AppointmentDetails,
     Home,
     SignIn
@@ -24,6 +25,10 @@ export function AuthRoutes() {
             <Screen
                 name="appointmentDetails"
                 component={AppointmentDetails}
+            />
+            <Screen
+                name="appointmentCreate"
+                component={AppointmentCreate}
             />
         </Navigator>
     );
