@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import styled from 'styled-components/native';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { Feather } from '@expo/vector-icons';
 
@@ -8,7 +9,6 @@ import {
     CategorySelect,
     GuildIcon,
     Header,
-    SmallInput,
 } from '../../components';
 
 import { theme } from '../../global/styles';
@@ -17,7 +17,7 @@ const Container = styled.View`
     flex: 1;
 `;
 
-const Label = styled.Text`
+const SectionLabel = styled.Text`
     font-size: 18px;
     font-family: ${theme.fonts.title700};
     color: ${theme.colors.heading};
@@ -30,13 +30,11 @@ const Form = styled.View`
     margin-top: 32px;
 `;
 
-const Touchable = styled.TouchableOpacity.attrs({
+
+const SelectServerWrapper = styled.TouchableOpacity.attrs({
     activeOpacity: 0.7
 })`
 
-`;
-
-const SelectServerWrapper = styled.View`
     flex-direction: row;
     width: 100%;
     height: 68px;
@@ -63,7 +61,6 @@ const ImagePlaceHolder = styled.View`
     width: 64px;
     height: 68px;
     background-color: ${theme.colors.secondary50};
-    border-width: 1px;
     border-radius: 8px;
 `;
 
@@ -81,30 +78,80 @@ const Fields = styled.View`
     margin-top: 30px;
 `;
 
-const DayMonthWrapper = styled.View`
+const DateTimePlaceHolder = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.7
+})`
+
+    flex: 1;
+    width: 156px;
+    height: 48px;
+    background-color: ${theme.colors.secondary50};
+    border-radius: 8px;
+    justify-content: center;
+    padding-left: 16px;
+    margin-top: 12px;
+`;
+
+const DateTimePlaceHolderLabel = styled.Text`
+    font-size: 18px;
+    font-family: ${theme.fonts.title700};
+    color: ${theme.colors.highlight};
+`;
+
+const DateTimeWrapper = styled.View`
     width: 40%;
 `;
 
-const DayMonthContent = styled.View`
+const DateTimeContent = styled.View`
     flex-direction: row;
     align-items: center;
 `;
 
-const DayMonthLabel = styled.Text`
+const DateTimeLabel = styled.Text`
     font-size: 18px;
     font-family: ${theme.fonts.title700};
     color: ${theme.colors.heading};
 `;
 
-const BarDivider = styled.Text`
-    margin-right: 4px;
-    font-size: 15px;
-    font-family: ${theme.fonts.text500};
-    color: ${theme.colors.heading};
-`;
-
 export function AppointmentCreate() {
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+    const [dayMonth, setdayMonth] = useState('dd/mm');
+    const [hourMinute, sethourMinute] = useState('hh:mm');
+
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
+
+    const showTimePicker = () => {
+        setTimePickerVisibility(true);
+    };
+
+    const hideTimePicker = () => {
+        setTimePickerVisibility(false);
+    };
+
+    const handleConfirmDateMonth = (date: Date) => {
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        /* const year = date.getFullYear(); */
+        setdayMonth(`${day}/${month}`);
+        hideDatePicker();
+    };
+
+    const handleConfirmHourMinute = (date: Date) => {
+        const hour = date.getHours();
+        const minute = date.getMinutes() === 0 ? '00' : date.getMinutes();
+        sethourMinute(`${hour}:${minute}`);
+        hideTimePicker();
+    };
+
     const hasGuild = false;
+
     function handleCategorySelect(categoryId: string) {
         categoryId === category ? setCategory('') : setCategory(categoryId);
     }
@@ -115,49 +162,73 @@ export function AppointmentCreate() {
             <Header
                 title="Agendar partida"
             />
-            <Label>
+            <SectionLabel>
                 Categoria
-            </Label>
+            </SectionLabel>
             <CategorySelect
                 hasCheckBox
                 categorySelected={category}
                 setCategory={handleCategorySelect}
             />
             <Form>
-                <Touchable>
-                    <SelectServerWrapper>
-                        {hasGuild ? (
-                            <GuildIcon
-                                urlImage='https://github.com/samuelematias.png'
-                            />
-                        ) : (
-                            <ImagePlaceHolder />
-                        )}
-                        <SelectServerContent>
-                            <SelectServerLabel>
-                                Selecione um servidor
-                            </SelectServerLabel>
-                        </SelectServerContent>
-                        <StyledFeather />
-                    </SelectServerWrapper>
-                </Touchable>
+                <SelectServerWrapper>
+                    {hasGuild ? (
+                        <GuildIcon
+                            urlImage='https://github.com/samuelematias.png'
+                        />
+                    ) : (
+                        <ImagePlaceHolder />
+                    )}
+                    <SelectServerContent>
+                        <SelectServerLabel>
+                            Selecione um servidor
+                        </SelectServerLabel>
+                    </SelectServerContent>
+                    <StyledFeather />
+                </SelectServerWrapper>
                 <Fields>
-                    <DayMonthWrapper>
-                        <DayMonthLabel>
+                    <DateTimeWrapper>
+                        <DateTimeLabel>
                             Dia e mês
-                        </DayMonthLabel>
-                        <DayMonthContent>
-                            <SmallInput
-                                maxLength={2}
-                            />
-                            <BarDivider>
-                                /
-                            </BarDivider>
-                            <SmallInput
-                                maxLength={2}
-                            />
-                        </DayMonthContent>
-                    </DayMonthWrapper>
+                        </DateTimeLabel>
+                        <DateTimeContent>
+                            <DateTimePlaceHolder
+                                onPress={showDatePicker}
+                            >
+                                <DateTimePlaceHolderLabel>
+                                    {dayMonth}
+                                </DateTimePlaceHolderLabel>
+                                <DateTimePickerModal
+                                    isVisible={isDatePickerVisible}
+                                    mode="date"
+                                    onConfirm={handleConfirmDateMonth}
+                                    onCancel={hideDatePicker}
+                                    locale="pt_BR"
+                                />
+                            </DateTimePlaceHolder>
+                        </DateTimeContent>
+                    </DateTimeWrapper>
+                    <DateTimeWrapper>
+                        <DateTimeLabel>
+                            Hora e minuto
+                        </DateTimeLabel>
+                        <DateTimeContent>
+                            <DateTimePlaceHolder
+                                onPress={showTimePicker}
+                            >
+                                <DateTimePlaceHolderLabel>
+                                    {hourMinute}
+                                </DateTimePlaceHolderLabel>
+                                <DateTimePickerModal
+                                    isVisible={isTimePickerVisible}
+                                    mode="time"
+                                    onConfirm={handleConfirmHourMinute}
+                                    onCancel={hideTimePicker}
+                                    locale="pt_BR"
+                                />
+                            </DateTimePlaceHolder>
+                        </DateTimeContent>
+                    </DateTimeWrapper>
                 </Fields>
             </Form>
         </Container>
