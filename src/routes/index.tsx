@@ -3,11 +3,19 @@ import {
     NavigationContainer
 } from '@react-navigation/native';
 
+import {
+    SignIn
+} from '../screens';
+
+import { useAuth } from '../hooks';
+
 import { AuthRoutes } from './auth.routes';
 
 import { theme } from '../global/styles';
 
 export function Routes() {
+    const { user } = useAuth();
+
     const navTheme = {
         ...DefaultTheme,
         colors: {
@@ -19,7 +27,7 @@ export function Routes() {
         <NavigationContainer
             theme={navTheme}
         >
-            <AuthRoutes />
+            {user?.id ? <AuthRoutes /> : <SignIn />}
         </NavigationContainer>
     )
 }
