@@ -14,14 +14,19 @@ const Touchable = styled.TouchableOpacity`
     justify-content: center;
 `;
 
+const PlusIcon = styled(MaterialCommunityIcons).attrs({
+    name: 'plus',
+})`
+    color: ${theme.colors.heading};
+    font-size: 24px;
+`;
 export function ButtonAdd({ ...rest }: TouchableOpacityProps) {
     return (
-        <Touchable {...rest}>
-            <MaterialCommunityIcons
-                name="plus"
-                color={theme.colors.heading}
-                size={24}
-            />
+        <Touchable
+            activeOpacity={0.7}
+            {...rest}
+        >
+            <PlusIcon />
         </Touchable>
     );
 }
