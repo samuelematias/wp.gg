@@ -1,15 +1,16 @@
-import styled from 'styled-components/native';
-import { useNavigation } from '@react-navigation/native';
-
 import {
-    ButtonIcon,
-    StatusBarColor,
-} from '../../components';
+    Alert,
+    ActivityIndicator,
+} from 'react-native';
+
+import styled from 'styled-components/native';
+
+import { ButtonIcon } from '../../components';
+import { useAuth } from '../../hooks';
 
 import IllustrationImg from '../../assets/illustration.png';
 
 import { theme } from '../../global/styles';
-
 
 const Container = styled.View`
   flex: 1;
@@ -51,20 +52,18 @@ const ButtonWrapper = styled.View`
 `;
 
 export function SignIn() {
-    const { secondary100 } = theme.colors;
-    const navigation = useNavigation();
+    const { primary } = theme.colors;
+    const { loading, signIn } = useAuth();
 
-
-    function handleSignIn() {
-        navigation.navigate('home');
+    async function handleSignIn() {
+        try {
+            await signIn();
+        } catch (error) {
+            Alert.alert(error);
+        }
     }
-
     return (
         <Container>
-            <StatusBarColor
-                barStyle="light-content"
-                backgroundColor={secondary100}
-            />
             <Illustration source={IllustrationImg} />
             <Content>
                 <Title>
@@ -77,10 +76,17 @@ export function SignIn() {
                     favoritos com seus amigos
                 </SubTitle>
                 <ButtonWrapper>
-                    <ButtonIcon
-                        label="Entrar com Discord"
-                        onPress={handleSignIn}
-                    />
+                    {
+                        loading
+                            ? (
+                                <ActivityIndicator color={primary} />
+                            ) : (
+                                <ButtonIcon
+                                    label="Entrar com Discord"
+                                    onPress={handleSignIn}
+                                />
+                            )
+                    }
                 </ButtonWrapper>
             </Content>
         </Container>
