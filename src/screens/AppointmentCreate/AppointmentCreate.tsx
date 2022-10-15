@@ -12,11 +12,19 @@ import {
     GuildIcon,
     Header,
     TextArea,
+    ModalView,
+    GuildProps,
 } from '../../components';
+
+import { Guilds } from '../Guilds';
 
 import { theme } from '../../global/styles';
 
-const Container = styled(KeyboardAwareScrollView).attrs({
+const Container = styled.View`
+    flex: 1;
+`;
+
+const Scroll = styled(KeyboardAwareScrollView).attrs({
 })`
     flex: 1;
 `;
@@ -134,6 +142,12 @@ const Footer = styled.View`
 `;
 
 export function AppointmentCreate() {
+
+    const [category, setCategory] = useState('');
+    const [guild, setGuild] = useState<GuildProps>({} as GuildProps);
+    const [openGuildsModal, setOpenGuildsModal] = useState(false);
+    const hasGuild = guild.name;
+
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
     const [dayMonth, setdayMonth] = useState('dd/mm');
@@ -171,110 +185,142 @@ export function AppointmentCreate() {
         hideTimePicker();
     };
 
-    const hasGuild = false;
 
     function handleCategorySelect(categoryId: string) {
         categoryId === category ? setCategory('') : setCategory(categoryId);
     }
 
-    const [category, setCategory] = useState('');
+    function handleOpenGuilds() {
+        setOpenGuildsModal(true);
+    }
+
+    function handleCloseGuilds() {
+        setOpenGuildsModal(false);
+    }
+
+    function handleGuildSelect(guildSelect: GuildProps) {
+        setGuild(guildSelect);
+        setOpenGuildsModal(false);
+    }
+
     return (
         <Container>
-            <Header
-                title="Agendar partida"
-            />
-            <SectionLabel>
-                Categoria
-            </SectionLabel>
-            <CategorySelect
-                hasCheckBox
-                categorySelected={category}
-                setCategory={handleCategorySelect}
-            />
-            <Form>
-                <SelectServerWrapper>
-                    {hasGuild ? (
-                        <GuildIcon
-                            urlImage='https://github.com/samuelematias.png'
-                        />
-                    ) : (
-                        <ImagePlaceHolder />
-                    )}
-                    <SelectServerContent>
-                        <SelectServerLabel>
-                            Selecione um servidor
-                        </SelectServerLabel>
-                    </SelectServerContent>
-                    <ChevronRightIcon />
-                </SelectServerWrapper>
-                <Fields>
-                    <DateTimeWrapper>
-                        <DateTimeLabel>
-                            Dia e mês
-                        </DateTimeLabel>
-                        <DateTimeContent>
-                            <DateTimePlaceHolder
-                                onPress={showDatePicker}
-                            >
-                                <DateTimePlaceHolderLabel>
-                                    {dayMonth}
-                                </DateTimePlaceHolderLabel>
-                                <DateTimePickerModal
-                                    isVisible={isDatePickerVisible}
-                                    mode="date"
-                                    onConfirm={handleConfirmDateMonth}
-                                    onCancel={hideDatePicker}
-                                    locale="pt_BR"
-                                />
-                            </DateTimePlaceHolder>
-                        </DateTimeContent>
-                    </DateTimeWrapper>
-                    <DateTimeWrapper>
-                        <DateTimeLabel>
-                            Hora e minuto
-                        </DateTimeLabel>
-                        <DateTimeContent>
-                            <DateTimePlaceHolder
-                                onPress={showTimePicker}
-                            >
-                                <DateTimePlaceHolderLabel>
-                                    {hourMinute}
-                                </DateTimePlaceHolderLabel>
-                                <DateTimePickerModal
-                                    isVisible={isTimePickerVisible}
-                                    mode="time"
-                                    onConfirm={handleConfirmHourMinute}
-                                    onCancel={hideTimePicker}
-                                    locale="pt_BR"
-                                />
-                            </DateTimePlaceHolder>
-                        </DateTimeContent>
-                    </DateTimeWrapper>
-                </Fields>
-                <Fields
-                    style={{
-                        marginBottom: 12
-                    }}
-                >
-                    <DescriptionLabel>
-                        Descrição
-                    </DescriptionLabel>
-                    <MaxCharLabel>
-                        Max 100 caracteres
-                    </MaxCharLabel>
-                </Fields>
-                <TextArea
-                    multiline
-                    maxLength={100}
-                    numberOfLines={5}
-                    autoCorrect={false}
+
+            <Scroll>
+                <Header
+                    title="Agendar partida"
                 />
-                <Footer>
-                    <Button
-                        label="Agendar"
+                <SectionLabel>
+                    Categoria
+                </SectionLabel>
+                <CategorySelect
+                    hasCheckBox
+                    categorySelected={category}
+                    setCategory={handleCategorySelect}
+                />
+                <Form>
+                    <SelectServerWrapper
+                        onPress={handleOpenGuilds}
+                    >
+                        {
+                            hasGuild
+                                ? (
+                                    <GuildIcon
+                                        urlImage='https://github.com/samuelematias.png'
+                                    />
+                                )
+                                : (
+                                    <ImagePlaceHolder />
+                                )
+                        }
+                        <SelectServerContent>
+                            <SelectServerLabel>
+                                {
+                                    hasGuild
+                                        ? guild.name
+                                        : 'Selecione um servidor'
+                                }
+                            </SelectServerLabel>
+                        </SelectServerContent>
+                        <ChevronRightIcon />
+                    </SelectServerWrapper>
+                    <Fields>
+                        <DateTimeWrapper>
+                            <DateTimeLabel>
+                                Dia e mês
+                            </DateTimeLabel>
+                            <DateTimeContent>
+                                <DateTimePlaceHolder
+                                    onPress={showDatePicker}
+                                >
+                                    <DateTimePlaceHolderLabel>
+                                        {dayMonth}
+                                    </DateTimePlaceHolderLabel>
+                                    <DateTimePickerModal
+                                        isVisible={isDatePickerVisible}
+                                        mode="date"
+                                        onConfirm={handleConfirmDateMonth}
+                                        onCancel={hideDatePicker}
+                                        locale="pt_BR"
+                                    />
+                                </DateTimePlaceHolder>
+                            </DateTimeContent>
+                        </DateTimeWrapper>
+                        <DateTimeWrapper>
+                            <DateTimeLabel>
+                                Hora e minuto
+                            </DateTimeLabel>
+                            <DateTimeContent>
+                                <DateTimePlaceHolder
+                                    onPress={showTimePicker}
+                                >
+                                    <DateTimePlaceHolderLabel>
+                                        {hourMinute}
+                                    </DateTimePlaceHolderLabel>
+                                    <DateTimePickerModal
+                                        isVisible={isTimePickerVisible}
+                                        mode="time"
+                                        onConfirm={handleConfirmHourMinute}
+                                        onCancel={hideTimePicker}
+                                        locale="pt_BR"
+                                    />
+                                </DateTimePlaceHolder>
+                            </DateTimeContent>
+                        </DateTimeWrapper>
+                    </Fields>
+                    <Fields
+                        style={{
+                            marginBottom: 12
+                        }}
+                    >
+                        <DescriptionLabel>
+                            Descrição
+                        </DescriptionLabel>
+                        <MaxCharLabel>
+                            Max 100 caracteres
+                        </MaxCharLabel>
+                    </Fields>
+                    <TextArea
+                        multiline
+                        maxLength={100}
+                        numberOfLines={5}
+                        autoCorrect={false}
                     />
-                </Footer>
-            </Form>
+                    <Footer>
+                        <Button
+                            label="Agendar"
+                        />
+                    </Footer>
+                </Form>
+            </Scroll>
+            <ModalView
+                visible={openGuildsModal}
+                closeModal={handleCloseGuilds}
+            >
+                <Guilds
+                    handleGuildSelect={handleGuildSelect}
+                />
+            </ModalView>
         </Container>
     );
 }
