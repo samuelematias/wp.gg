@@ -189,7 +189,7 @@ export function AppointmentCreate() {
 
 
     function handleCategorySelect(categoryId: string) {
-        categoryId === category ? setCategory('') : setCategory(categoryId);
+        setCategory(categoryId);
     }
 
     function handleOpenGuilds() {
