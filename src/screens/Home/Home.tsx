@@ -108,6 +108,7 @@ export function Home() {
                 )}
                 ItemSeparatorComponent={() => <ListDivider />}
                 showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 69 }}
             />
             <FloatingButtonWrapper>
                 <ButtonAdd onPress={handleAppointmentCreate} />

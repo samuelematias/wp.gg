@@ -116,6 +116,7 @@ export function AppointmentDetails() {
                 )}
                 ItemSeparatorComponent={() => <ListDivider />}
                 showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 48 }}
             />
             <Footer>
                 <ButtonIcon
