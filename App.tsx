@@ -16,16 +16,11 @@ import {
 import * as SplashScreen from 'expo-splash-screen';
 import styled from 'styled-components/native';
 
+import { StatusBarColor } from './src/components';
+import { AuthProvider } from './src/hooks';
 import { Routes } from './src/routes';
 
 import { theme } from './src/global/styles';
-
-/// For Android, this will be necessary!
-/* const StatusBar = styled.StatusBar`
-*   bar-style: light-content;
-*   background-color: transparent;
-*   translucent: true;
-* `; */
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -34,6 +29,7 @@ const Container = styled.SafeAreaView`
 
 export default function App() {
     const [appIsReady, setAppIsReady] = useState(false);
+    const { secondary100 } = theme.colors;
 
     useEffect(() => {
         async function prepare() {
@@ -76,7 +72,13 @@ export default function App() {
     }
     return (
         <Container onLayout={onLayoutRootView}>
-            <Routes />
+            <StatusBarColor
+                barStyle="light-content"
+                backgroundColor={secondary100}
+            />
+            <AuthProvider>
+                <Routes />
+            </AuthProvider>
         </Container>
     );
 }

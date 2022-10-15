@@ -96,11 +96,13 @@ const DateTimePlaceHolder = styled.TouchableOpacity.attrs({
     flex: 1;
     width: 156px;
     height: 48px;
-    background-color: ${theme.colors.secondary50};
+    background-color: ${theme.colors.secondary40};
     border-radius: 8px;
     justify-content: center;
     padding-left: 16px;
     margin-top: 12px;
+    border-width: 1px;
+    border-color: ${theme.colors.secondary50};
 `;
 
 const DateTimePlaceHolderLabel = styled.Text`
@@ -187,7 +189,7 @@ export function AppointmentCreate() {
 
 
     function handleCategorySelect(categoryId: string) {
-        categoryId === category ? setCategory('') : setCategory(categoryId);
+        setCategory(categoryId);
     }
 
     function handleOpenGuilds() {
@@ -268,7 +270,7 @@ export function AppointmentCreate() {
                         </DateTimeWrapper>
                         <DateTimeWrapper>
                             <DateTimeLabel>
-                                Hora e minuto
+                                Horário
                             </DateTimeLabel>
                             <DateTimeContent>
                                 <DateTimePlaceHolder

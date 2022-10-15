@@ -1,10 +1,12 @@
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import { IMAGE_PLACEHOLDER } from '../../utils';
+
 import { theme } from '../../global/styles';
 
 type Props = {
-    urlImage: string;
+    urlImage: string | undefined;
 };
 
 const Container = styled.View`
@@ -36,7 +38,7 @@ export function Avatar({ urlImage }: Props) {
         <Container>
             <StyledLinearGradient>
                 <Image
-                    source={{ uri: urlImage }}
+                    source={{ uri: urlImage ? urlImage : IMAGE_PLACEHOLDER }}
                 />
             </StyledLinearGradient>
         </Container>

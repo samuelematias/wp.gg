@@ -6,6 +6,7 @@ import {
 import styled from 'styled-components/native';
 
 import { GuildIcon } from '../GuildIcon';
+import { GuildProps } from '../Guild';
 
 import PlayerSvg from '../../assets/player.svg';
 import CalendarSvg from '../../assets/calendar.svg';
@@ -17,13 +18,6 @@ import { theme } from '../../global/styles';
 type Props = TouchableOpacityProps & {
     data: AppointementProps;
 }
-
-export type GuildProps = {
-    id: string;
-    name: string;
-    icon: string | null;
-    owner: boolean;
-};
 
 export type AppointementProps = {
     id: string;
