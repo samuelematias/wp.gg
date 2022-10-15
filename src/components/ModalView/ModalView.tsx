@@ -32,6 +32,7 @@ const Content = styled.View`
     flex: 1;
     margin-top: 100px;
     background-color: ${theme.colors.secondary100};
+    border-radius: 20px;
 `;
 
 const Bar = styled.View`
