@@ -2,18 +2,22 @@ import { useState } from 'react';
 
 import styled from 'styled-components/native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { Feather } from '@expo/vector-icons';
 
 import {
+    Button,
     CategorySelect,
     GuildIcon,
     Header,
+    TextArea,
 } from '../../components';
 
 import { theme } from '../../global/styles';
 
-const Container = styled.View`
+const Container = styled(KeyboardAwareScrollView).attrs({
+})`
     flex: 1;
 `;
 
@@ -29,7 +33,6 @@ const Form = styled.View`
     padding-horizontal: 24px;
     margin-top: 32px;
 `;
-
 
 const SelectServerWrapper = styled.TouchableOpacity.attrs({
     activeOpacity: 0.7
@@ -64,7 +67,7 @@ const ImagePlaceHolder = styled.View`
     border-radius: 8px;
 `;
 
-const StyledFeather = styled(Feather).attrs({
+const ChevronRightIcon = styled(Feather).attrs({
     name: 'chevron-right',
 })`
     color: ${theme.colors.heading};
@@ -113,6 +116,23 @@ const DateTimeLabel = styled.Text`
     color: ${theme.colors.heading};
 `;
 
+const DescriptionLabel = styled.Text`
+    font-size: 18px;
+    font-family: ${theme.fonts.title700};
+    color: ${theme.colors.heading};
+`;
+
+const MaxCharLabel = styled.Text`
+    font-size: 13px;
+    font-family: ${theme.fonts.text400};
+    color: ${theme.colors.highlight};
+`;
+
+const Footer = styled.View`
+    margin-top: 20px;
+    margin-bottom: 56px;
+`;
+
 export function AppointmentCreate() {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -138,15 +158,16 @@ export function AppointmentCreate() {
     const handleConfirmDateMonth = (date: Date) => {
         const day = date.getDate();
         const month = date.getMonth() + 1;
-        /* const year = date.getFullYear(); */
         setdayMonth(`${day}/${month}`);
         hideDatePicker();
     };
 
     const handleConfirmHourMinute = (date: Date) => {
         const hour = date.getHours();
-        const minute = date.getMinutes() === 0 ? '00' : date.getMinutes();
-        sethourMinute(`${hour}:${minute}`);
+        const convertedHour = hour <= 9 ? '0' + hour : hour;
+        const minutes = date.getMinutes();
+        const convertedMinutes = minutes <= 9 ? '0' + minutes : minutes;
+        sethourMinute(`${convertedHour}:${convertedMinutes}`);
         hideTimePicker();
     };
 
@@ -184,7 +205,7 @@ export function AppointmentCreate() {
                             Selecione um servidor
                         </SelectServerLabel>
                     </SelectServerContent>
-                    <StyledFeather />
+                    <ChevronRightIcon />
                 </SelectServerWrapper>
                 <Fields>
                     <DateTimeWrapper>
@@ -230,6 +251,29 @@ export function AppointmentCreate() {
                         </DateTimeContent>
                     </DateTimeWrapper>
                 </Fields>
+                <Fields
+                    style={{
+                        marginBottom: 12
+                    }}
+                >
+                    <DescriptionLabel>
+                        Descrição
+                    </DescriptionLabel>
+                    <MaxCharLabel>
+                        Max 100 caracteres
+                    </MaxCharLabel>
+                </Fields>
+                <TextArea
+                    multiline
+                    maxLength={100}
+                    numberOfLines={5}
+                    autoCorrect={false}
+                />
+                <Footer>
+                    <Button
+                        label="Agendar"
+                    />
+                </Footer>
             </Form>
         </Container>
     );

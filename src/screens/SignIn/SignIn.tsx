@@ -66,7 +66,6 @@ export function SignIn() {
                 </SubTitle>
                 <ButtonIcon
                     label="Entrar com Discord"
-                    activeOpacity={0.7}
                     onPress={() => handleSignIn()}
                 />
             </Content>

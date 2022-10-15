@@ -82,7 +82,6 @@ export function Home() {
             <Header>
                 <Profile />
                 <ButtonAdd
-                    activeOpacity={0.7}
                     onPress={handleAppointmentCreate}
                 />
             </Header>
