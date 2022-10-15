@@ -35,7 +35,18 @@ const Title = styled.Text`
     font-family: ${theme.fonts.title700};
 `;
 
+const ChevronLeftIcon = styled(Feather).attrs({
+    name: 'chevron-left',
+})`
+    color: ${theme.colors.heading};
+    font-size: 24px;
+`;
+
 const ActionWrapper = styled.View`
+`;
+
+const EmptyActionWrapper = styled.View`
+    width: 24px;
 `;
 
 export function Header({ title, action }: Props) {
@@ -50,15 +61,15 @@ export function Header({ title, action }: Props) {
             <Touchable
                 onPress={handleGoBack}
             >
-                <Feather
-                    name="chevron-left"
-                    size={24}
-                    color={theme.colors.heading}
-                />
+                <ChevronLeftIcon />
             </Touchable>
 
             <Title>{title}</Title>
-            {action && <ActionWrapper>{action}</ActionWrapper>}
+            {
+                action
+                    ? <ActionWrapper>{action}</ActionWrapper>
+                    : <EmptyActionWrapper />
+            }
         </Container>
     );
 }
