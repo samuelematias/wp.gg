@@ -228,7 +228,8 @@ export function AppointmentCreate() {
                             hasGuild
                                 ? (
                                     <GuildIcon
-                                        urlImage='https://github.com/samuelematias.png'
+                                        guildId={guild.id}
+                                        iconId={guild.icon}
                                     />
                                 )
                                 : (
