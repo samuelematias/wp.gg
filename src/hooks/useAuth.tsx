@@ -7,6 +7,7 @@ import React,
 } from 'react';
 
 import * as AuthSession from 'expo-auth-session';
+
 import {
     REDIRECT_URI,
     SCOPE,
