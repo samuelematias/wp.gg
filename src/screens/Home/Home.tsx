@@ -106,7 +106,7 @@ export function Home() {
                         onPress={handleAppointmentDetails}
                     />
                 )}
-                ItemSeparatorComponent={() => <ListDivider />}
+                ItemSeparatorComponent={() => <ListDivider isCentered />}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 69 }}
             />
