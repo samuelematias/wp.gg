@@ -65,8 +65,23 @@ export function Home() {
         navigation.navigate('appointmentCreate');
     }
 
-    function handleAppointmentDetails() {
-        navigation.navigate('appointmentDetails');
+    function handleAppointmentDetails({
+        id,
+        guild,
+        category,
+        date,
+        description
+    }: AppointmentProps) {
+        navigation.navigate(
+            'appointmentDetails',
+            {
+                id,
+                guild,
+                category,
+                date,
+                description
+            }
+        );
     }
 
     async function loadAppointments() {
@@ -110,7 +125,7 @@ export function Home() {
                                 renderItem={({ item }: { item: AppointmentProps }) => (
                                     <Appointment
                                         data={item}
-                                        onPress={handleAppointmentDetails}
+                                        onPress={() => handleAppointmentDetails(item)}
                                     />
                                 )}
                                 ItemSeparatorComponent={() => <ListDivider isCentered />}
