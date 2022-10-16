@@ -6,6 +6,8 @@ import {
 import {
     FlatList,
     Alert,
+    Share,
+    Platform,
 } from 'react-native';
 
 import styled from 'styled-components/native';
@@ -41,8 +43,11 @@ const Container = styled.SafeAreaView`
 const Touchable = styled.TouchableOpacity`
 `;
 
-const Icon = styled(Fontisto)`
+const ShareIcon = styled(Fontisto).attrs({
+    name: 'share',
+})`
     color: ${theme.colors.primary};
+    font-size: 24px;
 `;
 
 const BannerContent = styled.View`
@@ -91,12 +96,23 @@ const WidgetErroContent = styled.View`
 `;
 
 export function AppointmentDetails() {
-    const { primary } = theme.colors;
     const [widget, setWidget] = useState<GuildWidget>({} as GuildWidget);
     const isWidgetUnavailable = widget.members === undefined;
     const [loading, setLoading] = useState(true);
     const route = useRoute();
     const { guild, description } = route.params as AppointmentProps;
+    const imOwnerThisServer = guild.owner;
+
+    function handleShareInvitation() {
+        const message = Platform.OS === 'ios'
+            ? `Junte-se a ${guild.name}`
+            : widget.instant_invite;
+
+        Share.share({
+            message,
+            url: widget.instant_invite
+        });
+    }
 
     async function fetchGuildWidget() {
         try {
@@ -109,9 +125,16 @@ export function AppointmentDetails() {
         }
     }
 
+    useEffect(() => {
+        fetchGuildWidget();
+    }, []);
+
+
     const renderShareButton = (
-        <Touchable>
-            <Icon name="share" size={24} color={primary} />
+        <Touchable
+            onPress={handleShareInvitation}
+        >
+            <ShareIcon name="share" size={24} />
         </Touchable>
     );
 
@@ -145,15 +168,14 @@ export function AppointmentDetails() {
             </>
     );
 
-    useEffect(() => {
-        fetchGuildWidget();
-    }, []);
-
     return (
         <Container>
             <Header
                 title="Detalhes"
-                action={renderShareButton}
+                action={
+                    imOwnerThisServer &&
+                    renderShareButton
+                }
             />
             <Banner<ElementType>>
                 <BannerContent>
