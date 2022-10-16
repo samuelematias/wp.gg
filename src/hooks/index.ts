@@ -1,4 +1,4 @@
 export {
     AuthProvider,
     useAuth,
-} from './auth';
+} from './useAuth';

@@ -1,9 +1,11 @@
+import { AppointmentProps } from '../components';
+
 export declare global {
     namespace ReactNavigation {
         interface RootParamList {
             signin: undefined;
             home: undefined;
-            appointmentDetails: undefined;
+            appointmentDetails: AppointmentProps;
             appointmentCreate: undefined;
         }
     }

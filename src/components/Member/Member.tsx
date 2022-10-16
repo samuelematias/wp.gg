@@ -10,8 +10,8 @@ import { theme } from '../../global/styles';
 
 export type MemberProps = {
     id: string;
-    userName: string;
-    avatarUrl: string;
+    username: string;
+    avatar_url: string;
     status: string;
 }
 
@@ -61,11 +61,11 @@ export function Member({ data }: Props) {
     return (
         <Container>
             <Avatar
-                urlImage={data.avatarUrl}
+                urlImage={data.avatar_url}
             />
             <UserInfoWrapper>
                 <Title>
-                    {data.userName}
+                    {data.username}
                 </Title>
                 <StatusWrapper>
                     <Status

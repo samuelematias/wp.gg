@@ -1,11 +1,18 @@
+import {
+    useState,
+    useEffect,
+} from 'react';
+
 import { FlatList } from 'react-native';
 
 import styled from 'styled-components/native';
 
+import { api } from '../../services';
 import {
     Guild,
     GuildProps,
     ListDivider,
+    Loading,
 } from '../../components';
 
 type Props = {
@@ -23,35 +30,39 @@ const GuildList = styled(FlatList as new () => FlatList<GuildProps>)`
 `
 
 export function Guilds({ handleGuildSelect }: Props) {
-    const guilds: GuildProps[] = [
-        {
-            id: '1',
-            name: 'Lendários',
-            icon: 'image.png',
-            owner: true,
-        },
-        {
-            id: '2',
-            name: 'Galera do Game',
-            icon: 'image.png',
-            owner: true,
-        },
-    ];
+    const [guilds, setGuilds] = useState<GuildProps[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    async function fetchGuilds() {
+        const response = await api.get('/users/@me/guilds');
+
+        setGuilds(response.data);
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        fetchGuilds();
+    }, []);
+
     return (
         <Container>
-            <GuildList
-                data={guilds}
-                keyExtractor={(item: GuildProps) => item.id}
-                renderItem={({ item }: { item: GuildProps }) => (
-                    <Guild
-                        data={item}
-                        onPress={() => handleGuildSelect(item)}
+            {
+                loading
+                    ? <Loading />
+                    : <GuildList
+                        data={guilds}
+                        keyExtractor={(item: GuildProps) => item.id}
+                        renderItem={({ item }: { item: GuildProps }) => (
+                            <Guild
+                                data={item}
+                                onPress={() => handleGuildSelect(item)}
+                            />
+                        )}
+                        showsVerticalScrollIndicator={false}
+                        ItemSeparatorComponent={() => <ListDivider />}
+                        contentContainerStyle={{ paddingBottom: 68 }}
                     />
-                )}
-                showsVerticalScrollIndicator={false}
-                ItemSeparatorComponent={() => <ListDivider />}
-                contentContainerStyle={{ paddingBottom: 68 }}
-            />
+            }
         </Container>
     );
 }

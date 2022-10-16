@@ -28,6 +28,8 @@ const Touchable = styled.TouchableOpacity`
 const Content = styled.View`
     flex: 1;
     justify-content: center;
+    padding-top: 20px;
+    padding-left: 20px;
 `;
 
 const Title = styled.Text`
@@ -58,7 +60,8 @@ export function Guild({ data, ...rest }: Props) {
             {...rest}
         >
             <GuildIcon
-                urlImage='https://github.com/samuelematias.png'
+                guildId={data.id}
+                iconId={data.icon}
             />
             <Content>
                 <Title>{data.name}</Title>

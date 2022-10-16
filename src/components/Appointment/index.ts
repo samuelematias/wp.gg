@@ -1,4 +1,4 @@
 export {
     Appointment,
-    AppointementProps,
+    AppointmentProps,
 } from './Appointment';

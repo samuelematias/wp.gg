@@ -1,21 +1,48 @@
 import styled from 'styled-components/native';
 
-type Props = {
-    urlImage: string;
-};
+const { CDN_IMAGE } = process.env;
 
-const Image = styled.Image`
-    width: 64px;
-    height: 64px;
+import DiscordSvg from '../../assets/discord.svg';
+
+import { theme } from '../../global/styles';
+
+type Props = {
+    guildId: string;
+    iconId: string | null;
+}
+
+const Container = styled.View`
+    width: 62px;
+    height: 62px;
     border-radius: 8px;
-    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: ${theme.colors.primary};
+    overflow: hidden;
 `;
 
-export function GuildIcon({ urlImage }: Props) {
+const Image = styled.Image.attrs({
+    resizeMode: 'cover',
+})`
+    width: 64px;
+    height: 64px;
+`;
+
+const DiscordIcon = styled(DiscordSvg)`
+    width: 40px;
+    height: 40px;
+`;
+
+export function GuildIcon({ guildId, iconId }: Props) {
+    const uri = `${CDN_IMAGE}/icons/${guildId}/${iconId}.png`;
+
     return (
-        <Image
-            source={{ uri: urlImage }}
-            resizeMethod="resize"
-        />
+        <Container>
+            {
+                iconId
+                    ? <Image source={{ uri }} />
+                    : <DiscordIcon />
+            }
+        </Container>
     );
 }

@@ -1,11 +1,11 @@
-import {
-    Alert,
-    ActivityIndicator,
-} from 'react-native';
+import { Alert } from 'react-native';
 
 import styled from 'styled-components/native';
 
-import { ButtonIcon } from '../../components';
+import {
+    ButtonIcon,
+    Loading,
+} from '../../components';
 import { useAuth } from '../../hooks';
 
 import IllustrationImg from '../../assets/illustration.png';
@@ -52,7 +52,6 @@ const ButtonWrapper = styled.View`
 `;
 
 export function SignIn() {
-    const { primary } = theme.colors;
     const { loading, signIn } = useAuth();
 
     async function handleSignIn() {
@@ -79,7 +78,7 @@ export function SignIn() {
                     {
                         loading
                             ? (
-                                <ActivityIndicator color={primary} />
+                                <Loading size={'small'} />
                             ) : (
                                 <ButtonIcon
                                     label="Entrar com Discord"
