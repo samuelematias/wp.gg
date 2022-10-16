@@ -16,10 +16,10 @@ import { categories } from '../../utils';
 import { theme } from '../../global/styles';
 
 type Props = TouchableOpacityProps & {
-    data: AppointementProps;
+    data: AppointmentProps;
 }
 
-export type AppointementProps = {
+export type AppointmentProps = {
     id: string;
     guild: GuildProps;
     category: string;
@@ -39,6 +39,8 @@ export const Touchable = styled.TouchableOpacity`
 
 const Content = styled.View`
     flex: 1;
+    padding-top: 4px;
+    padding-left: 20px;
 `;
 
 const Header = styled.View`
@@ -93,15 +95,16 @@ const PlayerTitle = styled.Text<ITextProps>`
 `;
 
 export function Appointment({ data, ...rest }: Props) {
-    const guildDefaultIcon = 'https://i.imgur.com/6Y5uYMJ.png';
-    const icon = data.guild.icon ? data.guild.icon : guildDefaultIcon;
     const [category] = categories.filter(item => item.id === data.category);
     const { owner, name } = data.guild;
     const { primary, on } = theme.colors;
 
     return (
         <Touchable {...rest}>
-            <GuildIcon urlImage={icon} />
+            <GuildIcon
+                guildId={data.guild.id}
+                iconId={data.guild.icon}
+            />
             <Content>
                 <Header>
                     <HeaderTitle>{name}</HeaderTitle>
