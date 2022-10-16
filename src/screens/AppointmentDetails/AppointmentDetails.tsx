@@ -13,6 +13,7 @@ import {
 import styled from 'styled-components/native';
 import { Fontisto } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
+import * as Linking from 'expo-linking';
 
 import {
     ButtonIcon,
@@ -114,6 +115,10 @@ export function AppointmentDetails() {
         });
     }
 
+    function handleOpenGuild() {
+        Linking.openURL(widget.instant_invite);
+    }
+
     async function fetchGuildWidget() {
         try {
             const response = await api.get(`/guilds/${guild.id}/widget.json`);
@@ -168,14 +173,20 @@ export function AppointmentDetails() {
             </>
     );
 
+    const renderFooter = (
+        <Footer>
+            <ButtonIcon
+                label="Entrar na partida"
+                onPress={handleOpenGuild}
+            />
+        </Footer>
+    );
+
     return (
         <Container>
             <Header
                 title="Detalhes"
-                action={
-                    imOwnerThisServer &&
-                    renderShareButton
-                }
+                action={imOwnerThisServer && renderShareButton}
             />
             <Banner<ElementType>>
                 <BannerContent>
@@ -191,11 +202,7 @@ export function AppointmentDetails() {
                 ? <Loading />
                 : renderBody
             }
-            <Footer>
-                <ButtonIcon
-                    label="Entrar na partida"
-                />
-            </Footer>
+            {imOwnerThisServer && renderFooter}
         </Container>
     );
 }
