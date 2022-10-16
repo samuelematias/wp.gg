@@ -1,5 +1,6 @@
-import styled from 'styled-components/native';
+import { Alert } from 'react-native';
 
+import styled from 'styled-components/native';
 
 import { useAuth } from '../../hooks';
 import { Avatar } from '../Avatar';
@@ -36,14 +37,32 @@ const Message = styled.Text`
     color: ${theme.colors.highlight};
 `;
 
+const Touchable = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.7
+})``;
+
 export function Profile() {
-    const { user } = useAuth();
+    const { user, signOut } = useAuth();
+
+    function handleSignOut() {
+        Alert.alert('Logout', 'Deseja sair do wp.gg?',
+            [
+                {
+                    text: 'Não',
+                    style: 'cancel'
+                },
+                {
+                    text: 'Sim',
+                    onPress: () => signOut()
+                }
+            ])
+    }
 
     return (
         <Container>
-            <Avatar
-                urlImage={user?.avatar}
-            />
+            <Touchable onPress={handleSignOut}>
+                <Avatar urlImage={user?.avatar} />
+            </Touchable>
             <Content>
                 <UserWrapper>
                     <UserGreeting>
