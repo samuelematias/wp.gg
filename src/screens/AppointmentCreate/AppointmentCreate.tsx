@@ -3,9 +3,12 @@ import { useState } from 'react';
 import styled from 'styled-components/native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
 import { Feather } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import uuid from 'react-native-uuid';
+import { useNavigation } from '@react-navigation/native';
 
+import { COLLECTION_APPOINTMENTS } from '../../configs';
 import {
     Button,
     CategorySelect,
@@ -144,7 +147,7 @@ const Footer = styled.View`
 `;
 
 export function AppointmentCreate() {
-
+    const navigation = useNavigation();
     const [category, setCategory] = useState('');
     const [guild, setGuild] = useState<GuildProps>({} as GuildProps);
     const [openGuildsModal, setOpenGuildsModal] = useState(false);
@@ -154,6 +157,7 @@ export function AppointmentCreate() {
     const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
     const [dayMonth, setdayMonth] = useState('dd/mm');
     const [hourMinute, sethourMinute] = useState('hh:mm');
+    const [description, setDescription] = useState('');
 
     const showDatePicker = () => {
         setDatePickerVisibility(true);
@@ -203,6 +207,26 @@ export function AppointmentCreate() {
     function handleGuildSelect(guildSelect: GuildProps) {
         setGuild(guildSelect);
         setOpenGuildsModal(false);
+    }
+
+    async function handleSave() {
+        const newAppointment = {
+            id: uuid.v4(),
+            guild,
+            category,
+            date: `${dayMonth} às ${hourMinute}h`,
+            description
+        };
+
+        const storage = await AsyncStorage.getItem(COLLECTION_APPOINTMENTS);
+        const appointments = storage ? JSON.parse(storage) : [];
+
+        await AsyncStorage.setItem(
+            COLLECTION_APPOINTMENTS,
+            JSON.stringify([...appointments, newAppointment])
+        );
+
+        navigation.navigate('home');
     }
 
     return (
@@ -308,10 +332,12 @@ export function AppointmentCreate() {
                         maxLength={100}
                         numberOfLines={5}
                         autoCorrect={false}
+                        onChangeText={setDescription}
                     />
                     <Footer>
                         <Button
                             label="Agendar"
+                            onPress={handleSave}
                         />
                     </Footer>
                 </Form>
