@@ -9,7 +9,7 @@ import {
 
 import { useAuth } from '../hooks';
 
-import { AuthRoutes } from './auth.routes';
+import { AppRoutes } from './app.routes';
 
 import { theme } from '../global/styles';
 
@@ -27,7 +27,7 @@ export function Routes() {
         <NavigationContainer
             theme={navTheme}
         >
-            {user?.id ? <AuthRoutes /> : <SignIn />}
+            {user?.id ? <AppRoutes /> : <SignIn />}
         </NavigationContainer>
     )
 }
