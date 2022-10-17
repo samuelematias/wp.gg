@@ -6,6 +6,7 @@ import {
     ButtonIcon,
     Loading,
 } from '../../components';
+
 import { useAuth } from '../../hooks';
 
 import IllustrationImg from '../../assets/illustration.png';
@@ -37,7 +38,6 @@ const Title = styled.Text`
   line-height: 40px;
 `;
 
-
 const SubTitle = styled.Text`
   color: ${theme.colors.heading};
   text-align: center;
@@ -51,6 +51,11 @@ const ButtonWrapper = styled.View`
   margin-bottom: 50px;
 `;
 
+const LoadingWrapper = styled.View`
+    width: 100%;
+    height: 56px;
+`;
+
 export function SignIn() {
     const { loading, signIn } = useAuth();
 
@@ -61,6 +66,7 @@ export function SignIn() {
             Alert.alert(error);
         }
     }
+
     return (
         <Container>
             <Illustration source={IllustrationImg} />
@@ -78,7 +84,9 @@ export function SignIn() {
                     {
                         loading
                             ? (
-                                <Loading size={'small'} />
+                                <LoadingWrapper>
+                                    <Loading size={'small'} />
+                                </LoadingWrapper>
                             ) : (
                                 <ButtonIcon
                                     label="Entrar com Discord"
