@@ -43,7 +43,7 @@ const SubTitle = styled.Text`
     text-align: center;
     font-size: 15px;
     margin-bottom: 64px;
-    font-family: ${theme.fonts.title500};
+    font-family: ${theme.fonts.title600};
     line-height: 25px;
 `;
 

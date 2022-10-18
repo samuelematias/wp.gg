@@ -19,7 +19,7 @@ const UserWrapper = styled.View`
 `;
 
 const UserGreeting = styled.Text`
-    font-family: ${theme.fonts.title500};
+    font-family: ${theme.fonts.title600};
     font-size: 24px;
     color: ${theme.colors.heading};
     margin-right: 6px;

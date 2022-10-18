@@ -21,7 +21,7 @@ export const theme = {
 
         fonts: {
                 title700: 'Inter_700Bold',
-                title500: 'Inter_600SemiBold',
+                title600: 'Inter_600SemiBold',
                 text400: 'Inter_400Regular',
                 text500: 'Inter_500Medium',
         }
