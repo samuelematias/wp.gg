@@ -52,8 +52,9 @@ const SelectServerWrapper = styled.TouchableOpacity.attrs({
     flex-direction: row;
     width: 100%;
     height: 68px;
+    background-color: ${theme.colors.secondary100};
     border-width: 1px;
-    border-color: ${theme.colors.secondary50};
+    border-color: ${theme.colors.primary};
     border-radius: 8px;
     align-items: center;
     padding-right: 25px;
@@ -73,9 +74,11 @@ const SelectServerLabel = styled.Text`
 
 const ImagePlaceHolder = styled.View`
     width: 64px;
-    height: 68px;
-    background-color: ${theme.colors.secondary50};
+    height: 66px;
+    background-color: ${theme.colors.secondary100};
     border-radius: 8px;
+    border-width: 1px;
+    border-color: ${theme.colors.primary};
 `;
 
 const ChevronRightIcon = styled(Feather).attrs({
@@ -98,13 +101,13 @@ const DateTimePlaceHolder = styled.TouchableOpacity.attrs({
     flex: 1;
     width: 156px;
     height: 48px;
-    background-color: ${theme.colors.secondary40};
+    background-color: ${theme.colors.secondary100};
     border-radius: 8px;
     justify-content: center;
     padding-left: 16px;
     margin-top: 12px;
     border-width: 1px;
-    border-color: ${theme.colors.secondary50};
+    border-color: ${theme.colors.primary};
 `;
 
 const DateTimePlaceHolderLabel = styled.Text`
@@ -182,8 +185,10 @@ export function AppointmentCreate() {
 
     const handleConfirmDateMonth = (date: Date) => {
         const day = date.getDate();
+        const convertedDay = day <= 9 ? '0' + day : day;
         const month = date.getMonth() + 1;
-        setdayMonth(`${day}/${month}`);
+        const convertedMonth = month <= 9 ? '0' + month : month;
+        setdayMonth(`${convertedDay}/${convertedMonth}`);
         hideDatePicker();
     };
 
