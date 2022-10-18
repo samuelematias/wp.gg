@@ -31,7 +31,7 @@ interface ITextProps extends TextProps {
     owner: boolean;
 }
 
-export const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity`
     width: 100%;
     flex-direction: row;
     align-self: center;
@@ -95,9 +95,9 @@ const PlayerTitle = styled.Text<ITextProps>`
 `;
 
 export function Appointment({ data, ...rest }: Props) {
-    const [category] = categories.filter(item => item.id === data.category);
-    const { owner, name } = data.guild;
     const { primary, on } = theme.colors;
+    const { owner, name } = data.guild;
+    const [category] = categories.filter(item => item.id === data.category);
 
     return (
         <Touchable {...rest}>

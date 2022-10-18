@@ -6,6 +6,7 @@ import {
     ButtonIcon,
     Loading,
 } from '../../components';
+
 import { useAuth } from '../../hooks';
 
 import IllustrationImg from '../../assets/illustration.png';
@@ -13,42 +14,46 @@ import IllustrationImg from '../../assets/illustration.png';
 import { theme } from '../../global/styles';
 
 const Container = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Illustration = styled.Image`
-  width: 100%;
-  height: 360px;
-  resize-mode: cover;
+    width: 100%;
+    height: 360px;
+    resize-mode: cover;
 `;
 
 const Content = styled.View`
-  padding-horizontal: 50px;
+    padding-horizontal: 50px;
 `;
 
 const Title = styled.Text`
-  color: ${theme.colors.heading};
-  text-align: center;
-  font-size: 40px;
-  margin-bottom: 16px;
-  font-family: ${theme.fonts.title700};
-  line-height: 40px;
+    color: ${theme.colors.heading};
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 16px;
+    font-family: ${theme.fonts.title700};
+    line-height: 40px;
 `;
-
 
 const SubTitle = styled.Text`
-  color: ${theme.colors.heading};
-  text-align: center;
-  font-size: 15px;
-  margin-bottom: 64px;
-  font-family: ${theme.fonts.title500};
-  line-height: 25px;
+    color: ${theme.colors.heading};
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 64px;
+    font-family: ${theme.fonts.title500};
+    line-height: 25px;
 `;
 
-const ButtonWrapper = styled.View`
-  margin-bottom: 50px;
+const Footer = styled.View`
+    margin-bottom: 50px;
+`;
+
+const LoadingWrapper = styled.View`
+    width: 100%;
+    height: 56px;
 `;
 
 export function SignIn() {
@@ -61,6 +66,21 @@ export function SignIn() {
             Alert.alert(error);
         }
     }
+
+    const renderLoading = (
+        <LoadingWrapper>
+            <Loading size={'small'} />
+        </LoadingWrapper>
+    );
+
+
+    const renderButton = (
+        <ButtonIcon
+            label="Entrar com Discord"
+            onPress={handleSignIn}
+        />
+    )
+
     return (
         <Container>
             <Illustration source={IllustrationImg} />
@@ -74,19 +94,13 @@ export function SignIn() {
                     Crie grupos para jogar seus games {'\n'}
                     favoritos com seus amigos
                 </SubTitle>
-                <ButtonWrapper>
+                <Footer>
                     {
                         loading
-                            ? (
-                                <Loading size={'small'} />
-                            ) : (
-                                <ButtonIcon
-                                    label="Entrar com Discord"
-                                    onPress={handleSignIn}
-                                />
-                            )
+                            ? renderLoading
+                            : renderButton
                     }
-                </ButtonWrapper>
+                </Footer>
             </Content>
         </Container>
     );

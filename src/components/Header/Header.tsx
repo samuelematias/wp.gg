@@ -1,7 +1,4 @@
-import
-React,
-{ ReactNode }
-    from 'react';
+import React, { ReactNode } from 'react';
 
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
@@ -23,8 +20,9 @@ const Container = styled.SafeAreaView`
     justify-content: center;
 `;
 
-
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.7
+})`
 `;
 
 const Title = styled.Text`
@@ -42,8 +40,7 @@ const ChevronLeftIcon = styled(Feather).attrs({
     font-size: 24px;
 `;
 
-const ActionWrapper = styled.View`
-`;
+const ActionWrapper = styled.View``;
 
 const EmptyActionWrapper = styled.View`
     width: 24px;

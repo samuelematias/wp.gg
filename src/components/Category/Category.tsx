@@ -1,3 +1,5 @@
+import { ElementType } from 'react'
+
 import {
     TouchableOpacityProps,
     ViewProps,
@@ -20,7 +22,9 @@ interface IViewProps extends ViewProps {
     checked: boolean;
 }
 
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.7
+})`
     width: 104px;
     height: 120px;
     flex-direction: row;
@@ -61,13 +65,11 @@ const Label = styled.Text`
     margin-top: 16px;
 `;
 
-
-
 const StyledLinearGradient = styled(LinearGradient).attrs({
     colors: [theme.colors.secondary80, theme.colors.secondary100],
 })`
     border-radius: 8px;
-`
+`;
 
 export function Category({
     title,
@@ -78,7 +80,9 @@ export function Category({
 }: Props) {
 
     return (
-        <Touchable {...rest}>
+        <Touchable<ElementType>
+            {...rest}
+        >
             <StyledLinearGradient>
                 <Content checked={checked}>
                     {hasCheckBox && <Checkbox checked={checked} />}

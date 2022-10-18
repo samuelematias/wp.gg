@@ -44,25 +44,31 @@ export function Guilds({ handleGuildSelect }: Props) {
         fetchGuilds();
     }, []);
 
+    const renderBody = () => {
+        if (loading) {
+            return <Loading />;
+        }
+
+        return (
+            <GuildList
+                data={guilds}
+                keyExtractor={(item: GuildProps) => item.id}
+                renderItem={({ item }: { item: GuildProps }) => (
+                    <Guild
+                        data={item}
+                        onPress={() => handleGuildSelect(item)}
+                    />
+                )}
+                showsVerticalScrollIndicator={false}
+                ItemSeparatorComponent={() => <ListDivider />}
+                contentContainerStyle={{ paddingBottom: 68 }}
+            />
+        );
+    }
+
     return (
         <Container>
-            {
-                loading
-                    ? <Loading />
-                    : <GuildList
-                        data={guilds}
-                        keyExtractor={(item: GuildProps) => item.id}
-                        renderItem={({ item }: { item: GuildProps }) => (
-                            <Guild
-                                data={item}
-                                onPress={() => handleGuildSelect(item)}
-                            />
-                        )}
-                        showsVerticalScrollIndicator={false}
-                        ItemSeparatorComponent={() => <ListDivider />}
-                        contentContainerStyle={{ paddingBottom: 68 }}
-                    />
-            }
+            {renderBody()}
         </Container>
     );
 }
