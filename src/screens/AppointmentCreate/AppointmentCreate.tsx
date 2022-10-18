@@ -158,6 +158,12 @@ export function AppointmentCreate() {
     const [hourMinute, sethourMinute] = useState('hh:mm');
     const [description, setDescription] = useState('');
 
+    const isButtonDisabled = !category
+        || !hasGuild
+        || !containsNumbers(dayMonth)
+        || !containsNumbers(hourMinute)
+        || !description;
+
     const showDatePicker = () => {
         setDatePickerVisibility(true);
     };
@@ -190,6 +196,9 @@ export function AppointmentCreate() {
         hideTimePicker();
     };
 
+    function containsNumbers(str: string) {
+        return Boolean(str.match(/\d/));
+    }
 
     function handleCategorySelect(categoryId: string) {
         setCategory(categoryId);
@@ -337,6 +346,7 @@ export function AppointmentCreate() {
                         <Button
                             label="Agendar"
                             onPress={handleSave}
+                            disabled={isButtonDisabled}
                         />
                     </Footer>
                 </Form>
