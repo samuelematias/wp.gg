@@ -30,6 +30,7 @@ const Touchable = styled.TouchableOpacity.attrs({
     align-items: center;
     justify-content: center;
     margin-right: 8px;
+    padding-left: 4px;
 `;
 
 const Content = styled.View<IViewProps>`
