@@ -1,6 +1,4 @@
-import {
-    ViewProps,
-} from 'react-native';
+import { ViewProps } from 'react-native';
 
 import styled from 'styled-components/native';
 
@@ -56,6 +54,7 @@ const StatusName = styled.Text`
 
 const UserInfoWrapper = styled.View`
 `;
+
 export function Member({ data }: Props) {
     const isOnline = data.status === 'online';
     return (
