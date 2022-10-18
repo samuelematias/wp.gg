@@ -8,11 +8,9 @@ import * as Font from 'expo-font';
 import {
     Inter_400Regular,
     Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
 } from '@expo-google-fonts/inter';
-import {
-    Rajdhani_500Medium,
-    Rajdhani_700Bold,
-} from '@expo-google-fonts/rajdhani';
 import * as SplashScreen from 'expo-splash-screen';
 import styled from 'styled-components/native';
 
@@ -41,8 +39,8 @@ export default function App() {
                 await Font.loadAsync({
                     Inter_400Regular,
                     Inter_500Medium,
-                    Rajdhani_500Medium,
-                    Rajdhani_700Bold,
+                    Inter_600SemiBold,
+                    Inter_700Bold,
                 });
 
             } catch (e) {
