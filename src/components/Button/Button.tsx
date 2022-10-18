@@ -8,6 +8,7 @@ import { theme } from '../../global/styles';
 
 type Props = TouchableOpacityProps & {
     label: string;
+    disabled?: boolean;
 }
 
 const Touchable = styled.TouchableOpacity.attrs({
@@ -15,7 +16,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 })`
     width: 100%;
     height: 56px;
-    background-color: ${theme.colors.primary};
+    background-color: ${(props) => (props.disabled ? theme.colors.highlight : theme.colors.primary)};
     border-radius: 8px;
     flex-direction: row;
     align-items: center;
@@ -30,9 +31,14 @@ const Text = styled.Text`
     font-family: ${theme.fonts.text500};
 `;
 
-export function Button({ label, ...rest }: Props) {
+export function Button({
+    label,
+    disabled,
+    ...rest
+}: Props) {
     return (
         <Touchable<ElementType>
+            disabled={disabled}
             {...rest}
         >
             <Text >
