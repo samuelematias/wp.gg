@@ -1,3 +1,5 @@
+import { ElementType } from 'react'
+
 import { TouchableOpacityProps } from 'react-native';
 
 import styled from 'styled-components/native';
@@ -10,7 +12,9 @@ type Props = TouchableOpacityProps & {
     label: string;
 }
 
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.7
+})`
     width: 100%;
     height: 56px;
     background-color: ${theme.colors.primary};
@@ -44,8 +48,7 @@ const Icon = styled.Image`
 
 export function ButtonIcon({ label, ...rest }: Props) {
     return (
-        <Touchable
-            activeOpacity={0.7}
+        <Touchable<ElementType>
             {...rest}
         >
             <IconWrapper>
