@@ -5,7 +5,6 @@ import DuelSvg from '../assets/duel.svg';
 import FunSvg from '../assets/fun.svg';
 import TrainingSvg from '../assets/training.svg';
 
-
 export type CategoryProps = {
     id: string;
     title: string;
