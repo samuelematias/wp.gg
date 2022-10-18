@@ -1,7 +1,4 @@
-import
-React,
-{ ReactNode }
-    from 'react';
+import React, { ReactNode } from 'react';
 
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
@@ -23,8 +20,9 @@ const Container = styled.SafeAreaView`
     justify-content: center;
 `;
 
-
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.7
+})`
 `;
 
 const Title = styled.Text`
