@@ -52,8 +52,7 @@ const StatusName = styled.Text`
     font-size: 13px;
 `;
 
-const UserInfoWrapper = styled.View`
-`;
+const UserInfoWrapper = styled.View``;
 
 export function Member({ data }: Props) {
     const isOnline = data.status === 'online';

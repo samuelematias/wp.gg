@@ -20,8 +20,7 @@ const Modal = styled.Modal.attrs({
 })`
 `;
 
-const Touchable = styled.TouchableWithoutFeedback`
-`;
+const Touchable = styled.TouchableWithoutFeedback``;
 
 const Overlay = styled.View`
     flex: 1;

@@ -84,7 +84,6 @@ function AuthProvider({ children }: AuthProviderProps) {
 
                 setUser(userData);
             }
-
         } catch {
             throw new Error('Não foi possível autenticar');
         } finally {

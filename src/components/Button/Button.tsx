@@ -30,7 +30,6 @@ const Text = styled.Text`
     font-family: ${theme.fonts.text500};
 `;
 
-
 export function Button({ label, ...rest }: Props) {
     return (
         <Touchable<ElementType>

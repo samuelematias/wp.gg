@@ -40,8 +40,7 @@ const ChevronLeftIcon = styled(Feather).attrs({
     font-size: 24px;
 `;
 
-const ActionWrapper = styled.View`
-`;
+const ActionWrapper = styled.View``;
 
 const EmptyActionWrapper = styled.View`
     width: 24px;
