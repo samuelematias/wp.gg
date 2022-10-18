@@ -41,8 +41,7 @@ const Container = styled.SafeAreaView`
     flex: 1;
 `;
 
-const Touchable = styled.TouchableOpacity`
-`;
+const Touchable = styled.TouchableOpacity``;
 
 const ShareIcon = styled(Fontisto).attrs({
     name: 'share',

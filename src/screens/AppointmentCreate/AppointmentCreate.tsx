@@ -9,6 +9,7 @@ import uuid from 'react-native-uuid';
 import { useNavigation } from '@react-navigation/native';
 
 import { COLLECTION_APPOINTMENTS } from '../../configs';
+
 import {
     Button,
     CategorySelect,
@@ -48,7 +49,6 @@ const Form = styled.View`
 const SelectServerWrapper = styled.TouchableOpacity.attrs({
     activeOpacity: 0.7
 })`
-
     flex-direction: row;
     width: 100%;
     height: 68px;
@@ -95,7 +95,6 @@ const Fields = styled.View`
 const DateTimePlaceHolder = styled.TouchableOpacity.attrs({
     activeOpacity: 0.7
 })`
-
     flex: 1;
     width: 156px;
     height: 48px;
