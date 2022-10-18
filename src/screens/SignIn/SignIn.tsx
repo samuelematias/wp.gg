@@ -32,7 +32,7 @@ const Content = styled.View`
 const Title = styled.Text`
     color: ${theme.colors.heading};
     text-align: center;
-    font-size: 40px;
+    font-size: 32px;
     margin-bottom: 16px;
     font-family: ${theme.fonts.title700};
     line-height: 40px;
