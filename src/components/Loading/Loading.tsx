@@ -1,3 +1,5 @@
+import { ElementType } from 'react'
+
 import {
     ActivityIndicatorProps,
     ViewProps,
@@ -31,7 +33,7 @@ export function Loading({ size, ...rest }: Props) {
         <Container
             isSmall={size === 'small'}
         >
-            <LoadingIndicator<React.ElementType>
+            <LoadingIndicator<ElementType>
                 size={size}
                 {...rest}
             />
