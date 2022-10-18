@@ -1,8 +1,10 @@
+import { FlatList } from 'react-native';
+
 import styled from 'styled-components/native';
 
 import { Category } from '../Category';
 
-import { categories } from '../../utils';
+import { categories, CategoryProps } from '../../utils';
 
 type Props = {
     categorySelected: string;
@@ -10,15 +12,17 @@ type Props = {
     hasCheckBox?: boolean;
 };
 
-const Scroll = styled.ScrollView.attrs({
+const CategoryList = styled(FlatList as new () => FlatList<CategoryProps>).attrs({
     horizontal: true,
-    showsHorizontalScrollIndicator: false
+    showsHorizontalScrollIndicator: false,
 })`
     min-height: 120px;
     max-height: 120px;
     padding-left: 24px;
-`;
-
+`
+const Divider = styled.View`
+    width: 8px;
+`
 export function CategorySelect({
     categorySelected,
     setCategory,
@@ -26,20 +30,21 @@ export function CategorySelect({
 }: Props) {
 
     return (
-        <Scroll
-            contentContainerStyle={{ paddingRight: 40 }}
-        >
-            {categories.map(category => (
+        <CategoryList
+            data={categories}
+            keyExtractor={(item: CategoryProps) => item.id}
+            renderItem={({ item }: { item: CategoryProps }) => (
                 <Category
-                    key={category.id}
-                    title={category.title}
-                    icon={category.icon}
-                    checked={category.id === categorySelected}
-                    activeOpacity={0.7}
-                    onPress={() => setCategory(category.id)}
+                    key={item.id}
+                    title={item.title}
+                    icon={item.icon}
+                    checked={item.id === categorySelected}
+                    onPress={() => setCategory(item.id)}
                     hasCheckBox={hasCheckBox}
                 />
-            ))}
-        </Scroll>
+            )}
+            ItemSeparatorComponent={() => <Divider />}
+            contentContainerStyle={{ paddingRight: 40 }}
+        />
     );
 }

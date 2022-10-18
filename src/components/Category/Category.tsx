@@ -7,7 +7,6 @@ import {
 
 import styled from 'styled-components/native';
 import { SvgProps } from 'react-native-svg';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { theme } from '../../global/styles';
 
@@ -65,10 +64,11 @@ const Label = styled.Text`
     margin-top: 16px;
 `;
 
-const StyledLinearGradient = styled(LinearGradient).attrs({
-    colors: [theme.colors.secondary80, theme.colors.secondary100],
-})`
+const BoxWrapper = styled.View`
+    height: 120px;
     border-radius: 8px;
+    border-width: 1px;
+    border-color: ${theme.colors.primary};
 `;
 
 export function Category({
@@ -83,13 +83,13 @@ export function Category({
         <Touchable<ElementType>
             {...rest}
         >
-            <StyledLinearGradient>
+            <BoxWrapper>
                 <Content checked={checked}>
                     {hasCheckBox && <Checkbox checked={checked} />}
                     <Icon width={48} height={48} />
                     <Label>{title}</Label>
                 </Content>
-            </StyledLinearGradient>
+            </BoxWrapper>
         </Touchable>
     );
 };
