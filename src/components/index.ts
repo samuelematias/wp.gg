@@ -1,6 +1,5 @@
 export * from './Appointment';
 export * from './Avatar';
-export * from './Background';
 export * from './Button';
 export * from './ButtonAdd';
 export * from './ButtonIcon';
