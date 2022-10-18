@@ -1,7 +1,4 @@
-import { ElementType } from 'react'
-import {
-    ViewProps,
-} from 'react-native';
+import { ViewProps } from 'react-native';
 
 import styled from 'styled-components/native';
 
@@ -26,7 +23,7 @@ const Divider = styled.View<IViewProps>`
 
 export function ListDivider({ isCentered }: Props) {
     return (
-        <Divider<ElementType>
+        <Divider
             isCentered={isCentered}
         />
     );
