@@ -10,7 +10,10 @@ type Props = {
     hasCheckBox?: boolean;
 };
 
-const Scroll = styled.ScrollView`
+const Scroll = styled.ScrollView.attrs({
+    horizontal: true,
+    showsHorizontalScrollIndicator: false
+})`
     min-height: 120px;
     max-height: 120px;
     padding-left: 24px;
@@ -24,8 +27,6 @@ export function CategorySelect({
 
     return (
         <Scroll
-            horizontal
-            showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingRight: 40 }}
         >
             {categories.map(category => (
