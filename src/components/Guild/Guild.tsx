@@ -1,3 +1,5 @@
+import { ElementType } from 'react'
+
 import { TouchableOpacityProps } from 'react-native';
 
 import styled from 'styled-components/native';
@@ -18,7 +20,9 @@ type Props = TouchableOpacityProps & {
     data: GuildProps;
 }
 
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.7
+})`
     width: 100%;
     flex-direction: row;
     align-items: center;
@@ -55,8 +59,7 @@ const ChevronRightIcon = styled(Feather).attrs({
 
 export function Guild({ data, ...rest }: Props) {
     return (
-        <Touchable
-            activeOpacity={0.7}
+        <Touchable<ElementType>
             {...rest}
         >
             <GuildIcon
