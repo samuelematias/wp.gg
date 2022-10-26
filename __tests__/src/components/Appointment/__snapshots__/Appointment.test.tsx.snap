@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appointment should render correctly and match the snapshot 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignSelf": "center",
+      "flexDirection": "row",
+      "opacity": 1,
+      "width": "100%",
+    }
+  }
+  testID="Appointment.testId"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#9146FF",
+          "borderRadius": 8,
+          "height": 62,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "width": 62,
+        },
+      ]
+    }
+  >
+    <svg
+      data-file-name="SvgDiscord"
+      style={
+        Array [
+          Object {
+            "height": 40,
+            "width": 40,
+          },
+        ]
+      }
+      testID="GuildIcon.image.placeholder.testId"
+    />
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "paddingLeft": 20,
+          "paddingTop": 4,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 12,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDE3F0",
+              "fontFamily": "Inter_700Bold",
+              "fontSize": 18,
+            },
+          ]
+        }
+      >
+        Lendários
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ABB1CC",
+              "fontFamily": "Inter_400Regular",
+              "fontSize": 13,
+              "marginRight": 24,
+            },
+          ]
+        }
+      >
+        Ranqueada
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <svg
+          data-file-name="SvgCalendar"
+          fill="#9146FF"
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#ABB1CC",
+                "fontFamily": "Inter_400Regular",
+                "fontSize": 13,
+                "marginLeft": 7,
+              },
+            ]
+          }
+        >
+          22/06 às 20:40h
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <svg
+          data-file-name="SvgPlayer"
+          fill="#9146FF"
+          testID="Appointment.player.icon.testId"
+        />
+        <Text
+          owner={true}
+          style={
+            Array [
+              Object {
+                "color": "#9146FF",
+                "fontFamily": "Inter_500Medium",
+                "fontSize": 13,
+                "marginLeft": 7,
+                "marginRight": 24,
+              },
+            ]
+          }
+        >
+          Anfitrião
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
