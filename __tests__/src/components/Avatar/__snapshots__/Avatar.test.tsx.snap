@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar should render correctly and match the snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#9146FF",
+        "borderRadius": 8,
+        "height": 49,
+        "justifyContent": "center",
+        "marginRight": 22,
+        "width": 49,
+      },
+    ]
+  }
+>
+  <Image
+    source={
+      Object {
+        "uri": "https://facebook.github.io/react-native/docs/assets/favicon.png",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "borderRadius": 8,
+          "height": 46,
+          "width": 46,
+        },
+      ]
+    }
+    testID="Avatar.image.testId"
+  />
+</View>
+`;
