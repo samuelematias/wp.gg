@@ -40,8 +40,13 @@ export function GuildIcon({ guildId, iconId }: Props) {
         <Container>
             {
                 iconId
-                    ? <Image source={{ uri }} />
-                    : <DiscordIcon />
+                    ? <Image
+                        source={{ uri }}
+                        testID={'GuildIcon.image.testId'}
+                    />
+                    : <DiscordIcon
+                        testID={'GuildIcon.image.placeholder.testId'}
+                    />
             }
         </Container>
     );
