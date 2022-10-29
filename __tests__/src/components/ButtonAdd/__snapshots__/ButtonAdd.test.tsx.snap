@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonAdd should render correctly and match the snapshot 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#9146FF",
+      "borderRadius": 30,
+      "height": 60,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 60,
+    }
+  }
+  testID="button-add"
+>
+  <View
+    style={
+      Array [
+        Object {},
+      ]
+    }
+    testID="button-add-icon"
+  >
+    <Text />
+  </View>
+</View>
+`;
