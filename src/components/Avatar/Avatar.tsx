@@ -31,12 +31,12 @@ export function Avatar({ urlImage }: Props) {
             {urlImage ? (
                 <Image
                     source={{ uri: urlImage }}
-                    testID={'Avatar.image.testId'}
+                    testID={'avatar-image'}
                 />
             ) : (
                 <Image
                     source={{ uri: IMAGE_PLACEHOLDER }}
-                    testID={'Avatar.image.placeholder.testId'}
+                    testID={'avatar-image-placeholder'}
                 />
             )}
         </Container>
