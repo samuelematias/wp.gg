@@ -20,7 +20,7 @@ exports[`Appointment should render correctly and match the snapshot 1`] = `
       "width": "100%",
     }
   }
-  testID="Appointment.testId"
+  testID="appointment"
 >
   <View
     style={
@@ -36,6 +36,7 @@ exports[`Appointment should render correctly and match the snapshot 1`] = `
         },
       ]
     }
+    testID="guild-icon"
   >
     <svg
       data-file-name="SvgDiscord"
@@ -47,7 +48,7 @@ exports[`Appointment should render correctly and match the snapshot 1`] = `
           },
         ]
       }
-      testID="GuildIcon.image.placeholder.testId"
+      testID="guild-icon-image-placeholder"
     />
   </View>
   <View
@@ -156,7 +157,7 @@ exports[`Appointment should render correctly and match the snapshot 1`] = `
         <svg
           data-file-name="SvgPlayer"
           fill="#9146FF"
-          testID="Appointment.player.icon.testId"
+          testID="appointment-player-icon"
         />
         <Text
           owner={true}

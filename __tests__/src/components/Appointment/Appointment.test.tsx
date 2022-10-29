@@ -25,6 +25,16 @@ const appointment = {
     description: 'É hoje que vamos chegar ao challenger sem perder uma partida da md10',
 };
 
+const appointmentTestId = {
+    touchable: 'appointment',
+    playerIcon: 'appointment-player-icon',
+};
+
+const guildIconTestId = {
+    guildImage: 'guild-icon-image',
+    guildImagePlaceholder: 'guild-icon-image-placeholder',
+};
+
 const renderAppointment =
     <Appointment
         data={appointment}
@@ -46,9 +56,9 @@ describe('Appointment', () => {
     });
 
     it('should call onPress when pressed', () => {
-        const { getByText } = render(renderAppointment);
+        const { getByTestId } = render(renderAppointment);
 
-        fireEvent.press(getByText(appointment.guild.name));
+        fireEvent.press(getByTestId(appointmentTestId.touchable));
 
         expect(onPressMock).toHaveBeenCalled();
     });
@@ -127,7 +137,7 @@ describe('Appointment', () => {
 
         const { getByTestId } = render(renderAppointmentNotOwner);
 
-        const playerIcon = getByTestId('Appointment.player.icon.testId');
+        const playerIcon = getByTestId(appointmentTestId.playerIcon);
 
         expect(playerIcon.props.fill).toBe(theme.colors.on);
     });
@@ -135,12 +145,12 @@ describe('Appointment', () => {
     it('should render correctly the icon color, theme.colors.primary, when owner', () => {
         const { getByTestId } = render(renderAppointment);
 
-        const playerIcon = getByTestId('Appointment.player.icon.testId');
+        const playerIcon = getByTestId(appointmentTestId.playerIcon);
 
         expect(playerIcon.props.fill).toBe(theme.colors.primary);
     });
 
-    it('should render correctly when has GuildIcon', () => {
+    it('should render correctly when has GuildIcon image', () => {
         const appointmentHasIcon = {
             ...appointment,
             guild: {
@@ -158,19 +168,19 @@ describe('Appointment', () => {
 
         const { getByTestId } = render(renderAppointmentHasGuildIcon);
 
-        expect(getByTestId('GuildIcon.image.testId')).toBeTruthy();
+        expect(getByTestId(guildIconTestId.guildImage)).toBeTruthy();
     });
 
-    it('should render correctly when has no image', () => {
+    it('should render correctly when has no GuildIcon image', () => {
         const { queryByTestId } = render(renderAppointment);
 
-        expect(queryByTestId('GuildIcon.image.testId')).toBeFalsy();
+        expect(queryByTestId(guildIconTestId.guildImage)).toBeFalsy();
     });
 
     it('should render correctly the placeholder, when has no image', () => {
         const { queryByTestId } = render(renderAppointment);
 
-        expect(queryByTestId('GuildIcon.image.placeholder.testId')).toBeTruthy();
+        expect(queryByTestId(guildIconTestId.guildImagePlaceholder)).toBeTruthy();
     });
 
     it('should render correctly the category', () => {
@@ -183,7 +193,7 @@ describe('Appointment', () => {
     /* it('should be able to render with selected', () => {
 *     const { getByText, getByTestId } = render(<Appointment data={appointment} />);
 
-*     fireEvent(getByTestId('appointment'), 'onLongPress');
+*     fireEvent(getByTestId(appointmentTestId.touchable), 'onLongPress');
 
 *     expect(getByText('Desmarcar')).toBeTruthy();
 * }); */

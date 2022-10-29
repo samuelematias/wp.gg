@@ -102,7 +102,7 @@ export function Appointment({ data, ...rest }: Props) {
     return (
         <Touchable
             {...rest}
-            testID={'Appointment.testId'}
+            testID={'appointment'}
         >
             <GuildIcon
                 guildId={data.guild.id}
@@ -123,7 +123,7 @@ export function Appointment({ data, ...rest }: Props) {
                     <PlayerWrapper>
                         <PlayerSvg
                             fill={owner ? primary : on}
-                            testID={'Appointment.player.icon.testId'}
+                            testID={'appointment-player-icon'}
                         />
                         <PlayerTitle owner={owner}>
                             {owner ? 'Anfitrião' : 'Visitante'}
