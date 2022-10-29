@@ -100,7 +100,10 @@ export function Appointment({ data, ...rest }: Props) {
     const [category] = categories.filter(item => item.id === data.category);
 
     return (
-        <Touchable {...rest}>
+        <Touchable
+            {...rest}
+            testID={'appointment'}
+        >
             <GuildIcon
                 guildId={data.guild.id}
                 iconId={data.guild.icon}
@@ -118,7 +121,10 @@ export function Appointment({ data, ...rest }: Props) {
                         <DateLabel>{data.date}</DateLabel>
                     </DateWrapper>
                     <PlayerWrapper>
-                        <PlayerSvg fill={owner ? primary : on} />
+                        <PlayerSvg
+                            fill={owner ? primary : on}
+                            testID={'appointment-player-icon'}
+                        />
                         <PlayerTitle owner={owner}>
                             {owner ? 'Anfitrião' : 'Visitante'}
                         </PlayerTitle>

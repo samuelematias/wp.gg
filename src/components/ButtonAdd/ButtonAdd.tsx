@@ -25,12 +25,19 @@ const PlusIcon = styled(MaterialCommunityIcons).attrs({
     font-size: 30px;
 `;
 
+const Container = styled.View``;
+
 export function ButtonAdd({ ...rest }: TouchableOpacityProps) {
     return (
         <Touchable<ElementType>
             {...rest}
+            testID={'button-add'}
         >
-            <PlusIcon />
+            <Container
+                testID={'button-add-icon'}
+            >
+                <PlusIcon />
+            </Container>
         </Touchable>
     );
 }

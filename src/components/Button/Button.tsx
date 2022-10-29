@@ -12,7 +12,8 @@ type Props = TouchableOpacityProps & {
 }
 
 const Touchable = styled.TouchableOpacity.attrs({
-    activeOpacity: 0.7
+    activeOpacity: 0.7,
+    accessibilityRole: 'button',
 })`
     width: 100%;
     height: 56px;
@@ -33,15 +34,18 @@ const Text = styled.Text`
 
 export function Button({
     label,
-    disabled,
+    disabled = false,
     ...rest
 }: Props) {
     return (
         <Touchable<ElementType>
             disabled={disabled}
+            testID={'button'}
             {...rest}
         >
-            <Text >
+            <Text
+                testID={'button-label'}
+            >
                 {label}
             </Text>
         </Touchable>

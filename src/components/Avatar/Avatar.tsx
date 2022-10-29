@@ -5,7 +5,7 @@ import { IMAGE_PLACEHOLDER } from '../../utils';
 import { theme } from '../../global/styles';
 
 type Props = {
-    urlImage: string | undefined;
+    urlImage: string | undefined | null;
 };
 
 const Container = styled.View`
@@ -28,9 +28,17 @@ export function Avatar({ urlImage }: Props) {
 
     return (
         <Container>
-            <Image
-                source={{ uri: urlImage ? urlImage : IMAGE_PLACEHOLDER }}
-            />
+            {urlImage ? (
+                <Image
+                    source={{ uri: urlImage }}
+                    testID={'avatar-image'}
+                />
+            ) : (
+                <Image
+                    source={{ uri: IMAGE_PLACEHOLDER }}
+                    testID={'avatar-image-placeholder'}
+                />
+            )}
         </Container>
     );
 }

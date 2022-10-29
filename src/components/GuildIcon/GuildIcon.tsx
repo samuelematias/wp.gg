@@ -37,11 +37,18 @@ export function GuildIcon({ guildId, iconId }: Props) {
     const uri = `${CDN_IMAGE}/icons/${guildId}/${iconId}.png`;
 
     return (
-        <Container>
+        <Container
+            testID={'guild-icon'}
+        >
             {
                 iconId
-                    ? <Image source={{ uri }} />
-                    : <DiscordIcon />
+                    ? <Image
+                        source={{ uri }}
+                        testID={'guild-icon-image'}
+                    />
+                    : <DiscordIcon
+                        testID={'guild-icon-image-placeholder'}
+                    />
             }
         </Container>
     );
