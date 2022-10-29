@@ -40,11 +40,11 @@ export function Button({
     return (
         <Touchable<ElementType>
             disabled={disabled}
-            testID={'Button.testId'}
+            testID={'button'}
             {...rest}
         >
             <Text
-                testID={'Button.label.testId'}
+                testID={'button-label'}
             >
                 {label}
             </Text>

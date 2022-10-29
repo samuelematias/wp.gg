@@ -30,7 +30,7 @@ exports[`Button should render correctly and match the snapshot 1`] = `
       "width": "100%",
     }
   }
-  testID="Button.testId"
+  testID="button"
 >
   <Text
     style={
@@ -46,7 +46,7 @@ exports[`Button should render correctly and match the snapshot 1`] = `
         },
       ]
     }
-    testID="Button.label.testId"
+    testID="button-label"
   >
     banana
   </Text>

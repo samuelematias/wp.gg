@@ -13,8 +13,11 @@ import { theme } from '../../../../src/global/styles';
 const onPressMock = jest.fn();
 
 const buttonLabel = 'banana';
-const buttonLabelTestId = 'Button.label.testId';
-const buttonTestId = 'Button.testId';
+
+const buttonTestId = {
+    touchable: 'button',
+    label: 'button-label',
+};
 
 const renderButton = <Button label={buttonLabel} onPress={onPressMock} />;
 
@@ -61,7 +64,7 @@ describe('Button', () => {
     it('should render with the color, theme.colors.primary, when the button is enabled', () => {
         const { getByTestId } = render(renderButton);
 
-        const button = getByTestId(buttonTestId);
+        const button = getByTestId(buttonTestId.touchable);
 
         expect(button.parent?.props.style.backgroundColor).toBe(theme.colors.primary);
     });
@@ -75,7 +78,7 @@ describe('Button', () => {
             />,
         );
 
-        const button = getByTestId(buttonTestId);
+        const button = getByTestId(buttonTestId.touchable);
 
         expect(button.props).toHaveProperty('accessibilityState', { "disabled": true });
     });
@@ -89,7 +92,7 @@ describe('Button', () => {
             />,
         );
 
-        const button = getByTestId(buttonTestId);
+        const button = getByTestId(buttonTestId.touchable);
 
         expect(button.parent?.props.style.backgroundColor).toBe(theme.colors.highlight);
     });
@@ -105,7 +108,7 @@ describe('Button', () => {
             />,
         );
 
-        const button = getByTestId(buttonTestId);
+        const button = getByTestId(buttonTestId.touchable);
 
         expect(button.parent?.props.style.backgroundColor).toBe('red');
     });
@@ -113,7 +116,7 @@ describe('Button', () => {
     it(`should render the label, ${buttonLabel}`, () => {
         const { getByTestId } = render(renderButton);
 
-        const button = getByTestId(buttonLabelTestId);
+        const button = getByTestId(buttonTestId.label);
 
         expect(button.props.children).toBe(buttonLabel);
     });
@@ -121,7 +124,7 @@ describe('Button', () => {
     it('should render the label color, theme.colors.heading', () => {
         const { getByTestId } = render(renderButton);
 
-        const button = getByTestId(buttonLabelTestId);
+        const button = getByTestId(buttonTestId.label);
 
         expect(button.props.style[0].color).toBe(theme.colors.heading);
     });
