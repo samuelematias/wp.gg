@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonIcon should render correctly and match the snapshot 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#9146FF",
+      "borderRadius": 8,
+      "flexDirection": "row",
+      "height": 56,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": "100%",
+    }
+  }
+  testID="button-icon"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderColor": "#0E0E0E",
+          "borderRightWidth": 1,
+          "height": 56,
+          "justifyContent": "center",
+          "width": 56,
+        },
+      ]
+    }
+    testID="button-icon-icon"
+  >
+    <Image
+      source={1}
+      style={
+        Array [
+          Object {
+            "height": 18,
+            "width": 24,
+          },
+        ]
+      }
+    />
+  </View>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDE3F0",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "fontFamily": "Inter_500Medium",
+          "fontSize": 15,
+          "textAlign": "center",
+        },
+      ]
+    }
+    testID="button-icon-label"
+  >
+    apple
+  </Text>
+</View>
+`;
