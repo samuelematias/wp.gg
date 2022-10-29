@@ -50,11 +50,16 @@ export function ButtonIcon({ label, ...rest }: Props) {
     return (
         <Touchable<ElementType>
             {...rest}
+            testID={'button-icon'}
         >
-            <IconWrapper>
+            <IconWrapper
+                testID={'button-icon-icon'}
+            >
                 <Icon source={DiscordIcon} />
             </IconWrapper>
-            <Text >
+            <Text
+                testID={'button-icon-label'}
+            >
                 {label}
             </Text>
         </Touchable>
