@@ -13,9 +13,12 @@ import { theme } from '../../../../src/global/styles';
 const onPressMock = jest.fn();
 
 const buttonLabel = 'apple';
-const buttonIconTestId = 'button-icon';
-const buttonLabelTestId = 'button-icon-label';
-const buttonIconIconTestId = 'button-icon-icon';
+
+const buttonIconTestId = {
+    touchable: 'button-icon',
+    label: 'button-icon-label',
+    icon: 'button-icon-icon',
+};
 
 const renderComponent = <ButtonIcon label={buttonLabel} onPress={onPressMock} />;
 
@@ -36,25 +39,25 @@ describe('ButtonIcon', () => {
     it('should render correctly', () => {
         const { getByTestId } = render(renderComponent);
 
-        expect(getByTestId(buttonIconTestId)).toBeTruthy();
+        expect(getByTestId(buttonIconTestId.touchable)).toBeTruthy();
     });
 
     it('should render correctly with title', () => {
         const { getByTestId } = render(renderComponent);
 
-        expect(getByTestId(buttonLabelTestId)).toBeTruthy();
+        expect(getByTestId(buttonIconTestId.label)).toBeTruthy();
     });
 
     it('should render correctly with icon', () => {
         const { getByTestId } = render(renderComponent);
 
-        expect(getByTestId(buttonIconIconTestId)).toBeTruthy();
+        expect(getByTestId(buttonIconTestId.icon)).toBeTruthy();
     });
 
     it('should call onPress', () => {
         const { getByTestId } = render(renderComponent);
 
-        fireEvent.press(getByTestId(buttonIconTestId));
+        fireEvent.press(getByTestId(buttonIconTestId.touchable));
 
         expect(onPressMock).toHaveBeenCalled();
     });
@@ -62,8 +65,8 @@ describe('ButtonIcon', () => {
     it('should call onPress 2x', () => {
         const { getByTestId } = render(renderComponent);
 
-        fireEvent.press(getByTestId(buttonIconTestId));
-        fireEvent.press(getByTestId(buttonIconTestId));
+        fireEvent.press(getByTestId(buttonIconTestId.touchable));
+        fireEvent.press(getByTestId(buttonIconTestId.touchable));
 
         expect(onPressMock).toHaveBeenCalledTimes(2);
     });
@@ -71,7 +74,7 @@ describe('ButtonIcon', () => {
     it('should render with the color, theme.colors.primary, when the button is enabled', () => {
         const { getByTestId } = render(renderComponent);
 
-        const button = getByTestId(buttonIconTestId);
+        const button = getByTestId(buttonIconTestId.touchable);
 
         expect(button.parent?.props.style.backgroundColor).toBe(theme.colors.primary);
     });
@@ -87,7 +90,7 @@ describe('ButtonIcon', () => {
             />,
         );
 
-        const button = getByTestId(buttonIconTestId);
+        const button = getByTestId(buttonIconTestId.touchable);
 
         expect(button.parent?.props.style.backgroundColor).toBe('red');
     });
@@ -95,7 +98,7 @@ describe('ButtonIcon', () => {
     it(`should render the label, ${buttonLabel}`, () => {
         const { getByTestId } = render(renderComponent);
 
-        const button = getByTestId(buttonLabelTestId);
+        const button = getByTestId(buttonIconTestId.label);
 
         expect(button.props.children).toBe(buttonLabel);
     });
@@ -103,7 +106,7 @@ describe('ButtonIcon', () => {
     it('should render the label color, theme.colors.heading', () => {
         const { getByTestId } = render(renderComponent);
 
-        const button = getByTestId(buttonLabelTestId);
+        const button = getByTestId(buttonIconTestId.label);
 
         expect(button.props.style[0].color).toBe(theme.colors.heading);
     });
