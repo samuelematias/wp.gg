@@ -2,7 +2,7 @@
 
 # wp.gg
 
-[![License](https://img.shields.io/static/v1?label=license&message=MIT&color=8257E6&labelColor=0A1033)](../LICENSE)
+[![License](https://img.shields.io/static/v1?label=license&message=MIT&color=8257E6&labelColor=0A1033)](LICENSE)
 
 <h2 align="left">Topics 📋</h2>
 
