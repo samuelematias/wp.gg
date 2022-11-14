@@ -22,8 +22,9 @@
 <h2 align="left">About 📖</h2>
 
 <p align="left">
-    This application is where you can schedule and register your games and when you will play this game and associated with a discord.<br> 
-To improve this immersion, you login with your discord, so that you can schedule the event associated with a server you are on.
+In thid application you can schedule and register your games and when you will play this game and associated with a discord server.
+<br> 
+To improve this immersion, you can login with your discord, so that you can schedule the event associated with a server you are on it.
 </p>
 
 ---
